@@ -1,4 +1,4 @@
-# Sunita Listings Pro
+# Sunita Real Estate
 
 Real estate listings web app built with React, TypeScript, Vite, shadcn-ui, and Tailwind CSS.
 
