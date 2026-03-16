@@ -1,0 +1,151 @@
+import { useParams, Link } from "react-router-dom";
+import Layout from "@/components/layout/Layout";
+import { properties } from "@/data/mockData";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { MapPin, IndianRupee, Building, Calendar, Layers, Home, CheckCircle, ArrowLeft } from "lucide-react";
+import { useState } from "react";
+
+const PropertyDetail = () => {
+  const { slug } = useParams();
+  const property = properties.find((p) => p.slug === slug);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  if (!property) {
+    return (
+      <Layout>
+        <div className="pt-32 pb-20 text-center">
+          <h1 className="font-display text-3xl font-bold text-foreground">Property Not Found</h1>
+          <Link to="/projects"><Button variant="gold" className="mt-4">Back to Projects</Button></Link>
+        </div>
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      {/* Hero */}
+      <section className="relative pt-24 pb-0">
+        <div className="h-[50vh] relative">
+          <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-dark/40" />
+          <div className="absolute bottom-8 left-0 right-0 container mx-auto px-4">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <Link to="/projects" className="text-primary-foreground/80 text-sm flex items-center gap-2 mb-4 hover:text-gold transition-colors">
+                <ArrowLeft className="w-4 h-4" /> Back to Projects
+              </Link>
+              <h1 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground">{property.title}</h1>
+              <div className="flex items-center gap-2 text-primary-foreground/80 mt-2">
+                <MapPin className="w-4 h-4" /> {property.location}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 bg-cream">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Price & Config */}
+              <div className="bg-card p-6 rounded-lg shadow-md grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { icon: IndianRupee, label: "Price", value: property.price },
+                  { icon: Home, label: "Configuration", value: property.configuration },
+                  { icon: Layers, label: "Carpet Area", value: property.carpetArea },
+                  { icon: Building, label: "Floors", value: `${property.totalFloors} Floors` },
+                ].map((item) => (
+                  <div key={item.label} className="text-center">
+                    <item.icon className="w-5 h-5 text-gold mx-auto mb-1" />
+                    <p className="text-xs text-muted-foreground">{item.label}</p>
+                    <p className="font-semibold text-sm text-card-foreground">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Overview */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Overview</h2>
+                <p className="text-muted-foreground leading-relaxed">{property.overview}</p>
+              </div>
+
+              {/* Highlights */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Project Highlights</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {property.highlights.map((h) => (
+                    <div key={h} className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
+                      <span className="text-card-foreground text-sm">{h}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Amenities */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Amenities</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {property.amenities.map((a) => (
+                    <div key={a} className="flex items-center gap-2 bg-secondary p-3 rounded-md">
+                      <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
+                      <span className="text-secondary-foreground text-sm">{a}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Location Advantages */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Location Advantages</h2>
+                <div className="space-y-2">
+                  {property.locationAdvantages.map((l) => (
+                    <div key={l} className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-gold flex-shrink-0" />
+                      <span className="text-card-foreground text-sm">{l}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Gallery */}
+              <div className="bg-card p-6 rounded-lg shadow-md">
+                <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Gallery</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {property.gallery.map((img, i) => (
+                    <img key={i} src={img} alt={`${property.title} gallery ${i + 1}`} className="rounded-lg w-full h-48 object-cover" />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-6">
+              <div className="bg-card p-6 rounded-lg shadow-md sticky top-24">
+                <h3 className="font-display text-xl font-bold text-card-foreground mb-4">Enquire Now</h3>
+                <div className="space-y-3">
+                  <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
+                  <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
+                  <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
+                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message" rows={3} className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary resize-none" />
+                  <Button variant="gold" className="w-full">Send Enquiry</Button>
+                </div>
+                <div className="mt-6 pt-4 border-t border-border">
+                  <p className="text-xs text-muted-foreground mb-1">Builder: {property.builder}</p>
+                  <p className="text-xs text-muted-foreground mb-1">Possession: {property.possessionDate}</p>
+                  <p className="text-xs text-muted-foreground">Units Available: {property.unitsAvailable}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default PropertyDetail;
