@@ -31,7 +31,7 @@ const PropertyDetail = () => {
       <section className="relative pt-24 pb-0">
         <div className="h-[50vh] relative">
           <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-dark/40" />
+          <div className="absolute inset-0 bg-dark/25" />
           <div className="absolute bottom-8 left-0 right-0 container mx-auto px-4">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Link to="/projects" className="text-primary-foreground/80 text-sm flex items-center gap-2 mb-4 hover:text-gold transition-colors">

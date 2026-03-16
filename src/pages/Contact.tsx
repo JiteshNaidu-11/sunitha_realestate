@@ -2,6 +2,8 @@ import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import AnimatedPageBanner from "@/components/AnimatedPageBanner";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Linkedin, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -38,14 +40,65 @@ const Contact = () => {
             <motion.form
               initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
               onSubmit={handleSubmit}
-              className="bg-card p-8 rounded-lg shadow-md space-y-4"
+              className="bg-card/95 border border-border/80 shadow-xl rounded-2xl p-8 space-y-6"
             >
-              <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Send a Message</h2>
-              <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" required className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
-              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" required className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
-              <input value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject" required className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
-              <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message" rows={5} required className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary resize-none" />
-              <Button variant="gold" type="submit" className="w-full">Send Message</Button>
+              <div className="flex flex-col gap-2">
+                <h2 className="font-display text-2xl font-bold text-card-foreground">Send a Message</h2>
+                <p className="text-sm text-muted-foreground">
+                  Share a few details and we&apos;ll get back to you within one business day.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-card-foreground">Full Name</label>
+                  <Input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your full name"
+                    required
+                    className="h-11 bg-secondary/70 border-transparent focus-visible:border-primary focus-visible:ring-primary"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-card-foreground">Email</label>
+                  <Input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                    className="h-11 bg-secondary/70 border-transparent focus-visible:border-primary focus-visible:ring-primary"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-card-foreground">Subject</label>
+                <Input
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  placeholder="What would you like to discuss?"
+                  required
+                  className="h-11 bg-secondary/70 border-transparent focus-visible:border-primary focus-visible:ring-primary"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-card-foreground">Message</label>
+                <Textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={5}
+                  placeholder="Tell us a bit more about your requirement..."
+                  required
+                  className="bg-secondary/70 border-transparent resize-none focus-visible:border-primary focus-visible:ring-primary"
+                />
+              </div>
+
+              <Button variant="gold" type="submit" className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg">
+                Send Message
+              </Button>
             </motion.form>
 
             {/* Contact Info */}

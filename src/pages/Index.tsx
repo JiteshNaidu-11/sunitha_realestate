@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import PropertyCard from "@/components/PropertyCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import { properties, testimonials, services } from "@/data/mockData";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Home, Building, TrendingUp, FileText, ArrowRight, CheckCircle } from "lucide-react";
 // import heroBg from "@/assets/hero-bg.jpg";
-import heroVideo from "@/assets/Hero1.mp4";
+import heroVideo from "@/assets/realestate.mp4";
 import Layout from "@/components/layout/Layout";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -17,7 +17,22 @@ const iconMap: Record<string, React.ReactNode> = {
   FileText: <FileText className="w-8 h-8" />,
 };
 
+const heroHeadings = [
+  { line1: "Find Your Dream", highlight: "Property", line2: "in Navi Mumbai" },
+  { line1: "Where Dreams", highlight: "Meet Reality", line2: "in Navi Mumbai" },
+  { line1: "Your Trusted", highlight: "Real Estate", line2: "Partner" },
+];
+
 const Index = () => {
+  const [activeHeading, setActiveHeading] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveHeading((prev) => (prev + 1) % heroHeadings.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Hero pictures (commented out - using video background instead)
   // const heroSlides = [
   //   heroBg,
@@ -60,7 +75,7 @@ const Index = () => {
           />
         ))}
         */}
-        <div className="absolute inset-0 bg-dark/60" />
+        <div className="absolute inset-0 bg-dark/20" />
         <div className="relative z-10 container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -70,9 +85,22 @@ const Index = () => {
             <span className="inline-block text-gold font-body text-sm tracking-[0.3em] uppercase mb-4">
               Premium Real Estate in Navi Mumbai
             </span>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
-              Find Your Dream<br />
-              <span className="text-gold">Property</span> in Navi Mumbai
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight min-h-[4.5rem] md:min-h-[6rem] lg:min-h-[7rem] flex flex-col items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={activeHeading}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="block text-center"
+                >
+                  {heroHeadings[activeHeading].line1}
+                  <br />
+                  <span className="text-gold">{heroHeadings[activeHeading].highlight}</span>{" "}
+                  {heroHeadings[activeHeading].line2}
+                </motion.span>
+              </AnimatePresence>
             </h1>
             <p className="text-primary-foreground/70 font-body text-lg md:text-xl max-w-2xl mx-auto mb-8">
               Sunita Real Estate brings you the finest residential and commercial properties across Navi Mumbai with complete transparency and trust.

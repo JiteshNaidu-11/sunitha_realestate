@@ -27,7 +27,7 @@ const BlogDetail = () => {
       <section className="relative pt-24">
         <div className="h-[40vh] relative">
           <img src={blog.image} alt={blog.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-dark/50" />
+          <div className="absolute inset-0 bg-dark/30" />
         </div>
       </section>
 
