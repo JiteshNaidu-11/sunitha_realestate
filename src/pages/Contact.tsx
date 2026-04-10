@@ -7,15 +7,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Linkedin, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useSeo } from "@/lib/seo";
 
 const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/sunitaestate@gmail.com";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-<<<<<<< HEAD
-  const handleSubmit = (e: React.FormEvent) => {
-=======
   useSeo({
     title: "Contact Sunita Real Estate - Navi Mumbai Property Experts",
     description:
@@ -30,7 +28,6 @@ const Contact = () => {
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
->>>>>>> c378f3d (feat: projects, FormSubmit contact, legal pages, property cards, social links)
     e.preventDefault();
     const form = e.currentTarget;
     setIsSubmitting(true);

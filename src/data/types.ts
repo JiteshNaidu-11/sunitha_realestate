@@ -13,9 +13,8 @@ export interface Property {
   totalFloors: number;
   unitsAvailable: number;
   possessionDate: string;
+  /** Thumbnail on project cards / grids. Keep stable when you only add photos to the detail page. */
   image: string;
-<<<<<<< HEAD
-=======
   /** Optional: card heading (detail page still uses `title`). */
   cardTitle?: string;
   /** Optional: line under title on the card image overlay (defaults to `location`). */
@@ -25,14 +24,28 @@ export interface Property {
   /** Optional: price line on cards only (defaults to `price`). */
   cardPrice?: string;
   /** Detail-page hero (first item) + gallery grid. Add new shots here without changing `image` if the card should stay the same. */
->>>>>>> c378f3d (feat: projects, FormSubmit contact, legal pages, property cards, social links)
   gallery: string[];
+  /** Hero artwork already includes project name/logo; omit large title overlay to avoid double branding. */
+  heroBranded?: boolean;
+  /** Optional transparent brand mark layered over hero image (for branded hero artwork). */
+  heroOverlayImage?: string;
+  hallmarkIcons?: { src: string; label: string }[];
+  /** Optional heading above the hallmark marquee (e.g. old-site tagline) */
+  hallmarkTitle?: string;
   overview: string;
+  /** Short meta description for SEO (recommended ≤160 chars). Falls back to overview. */
+  metaDescription?: string;
   highlights: string[];
   locationAdvantages: string[];
   investmentPotential: string;
   amenities: string[];
+  amenityImages?: string[];
   mapLink: string;
+  /** Google Maps iframe embed URL (e.g. .../maps?q=lat,lng&output=embed) */
+  mapEmbedUrl?: string;
+  /** Optional banner above footer area */
+  ctaTitle?: string;
+  ctaDescription?: string;
 }
 
 export interface Blog {

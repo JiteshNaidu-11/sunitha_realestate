@@ -9,8 +9,6 @@ import { Home, Building, TrendingUp, FileText, ArrowRight, CheckCircle } from "l
 // import heroBg from "@/assets/hero-bg.jpg";
 import heroVideo from "@/assets/realestate.mp4";
 import Layout from "@/components/layout/Layout";
-<<<<<<< HEAD
-=======
 import { buildAbsoluteUrl, useSeo } from "@/lib/seo";
 import type { Property } from "@/data/types";
 
@@ -29,7 +27,6 @@ function getFeaturedProperties(all: Property[]): Property[] {
     (p): p is Property => p != null
   );
 }
->>>>>>> c378f3d (feat: projects, FormSubmit contact, legal pages, property cards, social links)
 
 const iconMap: Record<string, React.ReactNode> = {
   Home: <Home className="w-8 h-8" />,
@@ -46,6 +43,38 @@ const heroHeadings = [
 
 const Index = () => {
   const [activeHeading, setActiveHeading] = useState(0);
+
+  useSeo({
+    title: "Real Estate in Navi Mumbai - Residential and Commercial Projects",
+    description:
+      "Explore verified real estate projects in Navi Mumbai with Sunita Real Estate. Discover homes and commercial properties in Nerul, Seawoods, Kharghar, Juinagar, and CBD Belapur.",
+    path: "/",
+    keywords: [
+      "real estate in navi mumbai",
+      "navi mumbai property consultant",
+      "projects in nerul navi mumbai",
+      "projects in seawoods",
+      "kharghar properties",
+      "commercial property navi mumbai",
+    ],
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      name: "Sunita Real Estate",
+      url: buildAbsoluteUrl("/"),
+      telephone: "+91-7738384100",
+      email: "sunitaestate@gmail.com",
+      areaServed: ["Navi Mumbai", "Nerul", "Seawoods", "Kharghar", "Juinagar", "CBD Belapur", "Airoli"],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Shop No - 5, Madhushree CHS, Plot No - 33, Sector 40",
+        addressLocality: "Seawoods, Navi Mumbai",
+        addressRegion: "Maharashtra",
+        postalCode: "400706",
+        addressCountry: "IN",
+      },
+    },
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {

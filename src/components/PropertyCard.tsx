@@ -17,15 +17,12 @@ function showRupeeIcon(priceText: string): boolean {
 }
 
 const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
-<<<<<<< HEAD
-=======
   const cardImage = property.image?.trim() ? property.image : property.gallery?.[0] ?? "";
   const title = property.cardTitle ?? property.title;
   const tagline = property.cardTagline ?? property.location;
   const badge = property.cardBadge ?? property.configuration;
   const priceLine = property.cardPrice ?? property.price;
 
->>>>>>> c378f3d (feat: projects, FormSubmit contact, legal pages, property cards, social links)
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -36,8 +33,8 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
     >
       <div className="relative overflow-hidden min-h-[220px] h-56 sm:h-64">
         <img
-          src={property.image}
-          alt={property.title}
+          src={cardImage}
+          alt={`${property.title} in ${property.location}`}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10" />

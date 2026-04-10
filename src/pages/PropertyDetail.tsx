@@ -2,18 +2,11 @@ import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { properties } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
-<<<<<<< HEAD
 import { motion } from "framer-motion";
-import { MapPin, IndianRupee, Building, Calendar, Layers, Home, CheckCircle, ArrowLeft } from "lucide-react";
+import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft } from "lucide-react";
 import { useState } from "react";
-=======
-import { AnimatePresence, motion } from "framer-motion";
-import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
 import { buildAbsoluteUrl, useSeo } from "@/lib/seo";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
->>>>>>> c378f3d (feat: projects, FormSubmit contact, legal pages, property cards, social links)
 
 const PropertyDetail = () => {
   const { slug } = useParams();
@@ -23,34 +16,63 @@ const PropertyDetail = () => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
-  if (!property) {
-    return (
-      <Layout>
-        <div className="pt-32 pb-20 text-center">
-          <h1 className="font-display text-3xl font-bold text-foreground">Property Not Found</h1>
-          <Link to="/projects"><Button variant="gold" className="mt-4">Back to Projects</Button></Link>
-        </div>
-      </Layout>
-    );
-  }
+  const primaryImage = property?.gallery?.[0] ?? property?.image ?? "";
+  const seoDescription =
+    property?.metaDescription?.trim() ||
+    (property?.overview ? property.overview.replace(/\s+/g, " ").trim().slice(0, 160) : "");
 
-<<<<<<< HEAD
-=======
-  const amenityImageSlides = property.amenityImages && property.amenityImages.length > 0
-    ? property.amenityImages
-    : property.gallery;
+  const propertyKeywords = property
+    ? Array.from(
+        new Set(
+          [
+            property.title.toLowerCase(),
+            `${property.title.toLowerCase()} ${property.city.toLowerCase()}`,
+            `${property.title.toLowerCase()} ${property.location.toLowerCase()}`,
+            `${property.builder.toLowerCase()} projects in ${property.city.toLowerCase()}`,
+            `${property.configuration.toLowerCase()} in ${property.location.toLowerCase()}`,
+            `${property.propertyType.toLowerCase()} property in ${property.city.toLowerCase()}`,
+            `buy property in ${property.city.toLowerCase()}`,
+            `${property.location.toLowerCase()} real estate`,
+            `real estate ${property.city.toLowerCase()}`,
+            `navi mumbai real estate`,
+            `${property.propertyType.toLowerCase()} navi mumbai`,
+            property.slug.replace(/-/g, " "),
+          ].filter(Boolean)
+        )
+      )
+    : [];
 
-  const goToPrevAmenitySlide = () => {
-    setAmenitySlideIndex((prev) =>
-      prev === 0 ? amenityImageSlides.length - 1 : prev - 1
-    );
-  };
-
-  const goToNextAmenitySlide = () => {
-    setAmenitySlideIndex((prev) =>
-      prev === amenityImageSlides.length - 1 ? 0 : prev + 1
-    );
-  };
+  useSeo(
+    property
+      ? {
+          title: `${property.title} in ${property.location} - Project Details`,
+          description: seoDescription || property.overview,
+          path: `/projects/${property.slug}`,
+          keywords: propertyKeywords,
+          type: "article",
+          image: primaryImage,
+          structuredData: {
+            "@context": "https://schema.org",
+            "@type": "RealEstateListing",
+            name: property.title,
+            url: buildAbsoluteUrl(`/projects/${property.slug}`),
+            image: property.gallery,
+            description: seoDescription || property.overview,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: property.location,
+              addressRegion: "Maharashtra",
+              addressCountry: "IN",
+            },
+          },
+        }
+      : {
+          title: "Property Not Found",
+          description: "The requested project page could not be found.",
+          path: `/projects/${slug || ""}`,
+          noIndex: true,
+        }
+  );
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,17 +94,37 @@ const PropertyDetail = () => {
     setMessage("");
   };
 
->>>>>>> c378f3d (feat: projects, FormSubmit contact, legal pages, property cards, social links)
+  if (!property) {
+    return (
+      <Layout>
+        <div className="pt-32 pb-20 text-center">
+          <h1 className="font-display text-3xl font-bold text-foreground">Property Not Found</h1>
+          <Link to="/projects">
+            <Button variant="gold" className="mt-4">
+              Back to Projects
+            </Button>
+          </Link>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
-      {/* Hero */}
       <section className="relative pt-24 pb-0">
         <div className="h-[50vh] relative">
-          <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
+          <img
+            src={primaryImage || property.image}
+            alt={`${property.title} in ${property.location}`}
+            className="w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-dark/25" />
           <div className="absolute bottom-8 left-0 right-0 container mx-auto px-4">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <Link to="/projects" className="text-primary-foreground/80 text-sm flex items-center gap-2 mb-4 hover:text-gold transition-colors">
+              <Link
+                to="/projects"
+                className="text-primary-foreground/80 text-sm flex items-center gap-2 mb-4 hover:text-gold transition-colors"
+              >
                 <ArrowLeft className="w-4 h-4" /> Back to Projects
               </Link>
               <h1 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground">{property.title}</h1>
@@ -97,9 +139,7 @@ const PropertyDetail = () => {
       <section className="py-12 bg-cream">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Price & Config */}
               <div className="bg-card p-6 rounded-lg shadow-md grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   { icon: IndianRupee, label: "Price", value: property.price },
@@ -115,13 +155,11 @@ const PropertyDetail = () => {
                 ))}
               </div>
 
-              {/* Overview */}
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Overview</h2>
                 <p className="text-muted-foreground leading-relaxed">{property.overview}</p>
               </div>
 
-              {/* Highlights */}
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Project Highlights</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -134,7 +172,6 @@ const PropertyDetail = () => {
                 </div>
               </div>
 
-              {/* Amenities */}
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Amenities</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -147,7 +184,6 @@ const PropertyDetail = () => {
                 </div>
               </div>
 
-              {/* Location Advantages */}
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Location Advantages</h2>
                 <div className="space-y-2">
@@ -160,18 +196,21 @@ const PropertyDetail = () => {
                 </div>
               </div>
 
-              {/* Gallery */}
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Gallery</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {property.gallery.map((img, i) => (
-                    <img key={i} src={img} alt={`${property.title} gallery ${i + 1}`} className="rounded-lg w-full h-48 object-cover" />
+                    <img
+                      key={i}
+                      src={img}
+                      alt={`${property.title} ${property.location} image ${i + 1}`}
+                      className="rounded-lg w-full h-48 object-cover"
+                    />
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Sidebar */}
             <div className="space-y-6">
               <div className="bg-card p-6 rounded-lg shadow-md sticky top-24">
                 <h3 className="font-display text-xl font-bold text-card-foreground mb-4">Enquire Now</h3>
@@ -179,6 +218,7 @@ const PropertyDetail = () => {
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    name="name"
                     placeholder="Full Name"
                     required
                     autoComplete="name"
@@ -187,6 +227,7 @@ const PropertyDetail = () => {
                   <input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    name="email"
                     type="email"
                     placeholder="Email"
                     required
@@ -196,6 +237,7 @@ const PropertyDetail = () => {
                   <input
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    name="phone"
                     type="tel"
                     inputMode="tel"
                     placeholder="Phone Number"
@@ -206,6 +248,7 @@ const PropertyDetail = () => {
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    name="message"
                     placeholder="Message (optional)"
                     rows={3}
                     className="w-full bg-secondary text-secondary-foreground rounded-md px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary resize-none"
@@ -217,7 +260,9 @@ const PropertyDetail = () => {
                 <div className="mt-6 pt-4 border-t border-border">
                   <p className="text-xs text-muted-foreground mb-1">Builder: {property.builder}</p>
                   <p className="text-xs text-muted-foreground mb-1">Possession: {property.possessionDate}</p>
-                  <p className="text-xs text-muted-foreground">Units Available: {property.unitsAvailable}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Units Available: {property.unitsAvailable > 0 ? property.unitsAvailable : "Check with our team"}
+                  </p>
                 </div>
               </div>
             </div>
