@@ -15,6 +15,8 @@ const navLinks = [
   // { label: "Contact", path: "/contact" }, // duplicate of gold CTA — use main Contact button instead
 ];
 
+const scrollWindowToTop = () => window.scrollTo(0, 0);
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +41,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="inline-flex items-center">
+          <Link to="/" className="inline-flex items-center" onClick={scrollWindowToTop}>
             <img
               src="/sunita%20real%20estate%20logo.png"
               alt="Sunita Real Estate"
@@ -53,6 +55,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
+                onClick={scrollWindowToTop}
                 className={cn(
                   "px-3 py-2 text-sm font-medium transition-colors rounded-md",
                   location.pathname === link.path
@@ -63,7 +66,7 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <Link to="/contact">
+            <Link to="/contact" onClick={scrollWindowToTop}>
               <Button variant="gold" size="sm" className="ml-4 gap-2">
                 <Phone className="w-4 h-4" />
                 Contact
@@ -87,6 +90,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
+                onClick={scrollWindowToTop}
                 className={cn(
                   "block px-4 py-3 text-sm font-medium transition-colors",
                   location.pathname === link.path
@@ -98,7 +102,7 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="px-4 pt-2">
-              <Link to="/contact">
+              <Link to="/contact" onClick={scrollWindowToTop}>
                 <Button variant="gold" size="sm" className="w-full gap-2">
                   <Phone className="w-4 h-4" />
                   Contact Us

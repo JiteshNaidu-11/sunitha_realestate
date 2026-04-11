@@ -23,6 +23,10 @@ const pioneers = [
   },
 ];
 
+/** Toggle to show the "Carrying The Baton..." heading, copy, and three leader cards */
+const SHOW_CURRENT_LEADERS_SECTION = false;
+
+// Data for Current Leaders (used when SHOW_CURRENT_LEADERS_SECTION is true)
 const currentLeaders = [
   {
     name: "Amit Sharma",
@@ -173,50 +177,52 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Current Leaders */}
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
-              <div className="lg:col-span-5">
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                  Carrying The Baton Of Growth Into The Future
-                </h2>
+          {/* Current Leaders — set SHOW_CURRENT_LEADERS_SECTION to true to restore */}
+          {SHOW_CURRENT_LEADERS_SECTION && (
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
+                <div className="lg:col-span-5">
+                  <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                    Carrying The Baton Of Growth Into The Future
+                  </h2>
+                </div>
+                <div className="lg:col-span-7">
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    The current generation of Sunita Real Estate's visionaries, inheriting a legacy of innovation and success, further propel our trajectory with forward-thinking approaches. Building upon the foundation laid by their predecessors, they embrace emerging technologies and expand our market reach across Navi Mumbai.
+                  </p>
+                </div>
               </div>
-              <div className="lg:col-span-7">
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  The current generation of Sunita Real Estate's visionaries, inheriting a legacy of innovation and success, further propel our trajectory with forward-thinking approaches. Building upon the foundation laid by their predecessors, they embrace emerging technologies and expand our market reach across Navi Mumbai.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {currentLeaders.map((person, i) => (
-                <motion.div
-                  key={person.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="relative border-2 border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg">
-                    <div className="absolute top-0 left-0 w-14 h-14 border-l-4 border-t-4 border-gold z-10" />
-                    <div className="absolute top-0 right-0 w-14 h-14 border-r-4 border-t-4 border-gold z-10" />
-                    <div className="absolute bottom-0 left-0 w-14 h-14 border-l-4 border-b-4 border-gold z-10" />
-                    <div className="absolute bottom-0 right-0 w-14 h-14 border-r-4 border-b-4 border-gold z-10" />
-                    <div className="aspect-[4/5] overflow-hidden">
-                      <img
-                        src={person.image}
-                        alt={person.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {currentLeaders.map((person, i) => (
+                  <motion.div
+                    key={person.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group"
+                  >
+                    <div className="relative border-2 border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg">
+                      <div className="absolute top-0 left-0 w-14 h-14 border-l-4 border-t-4 border-gold z-10" />
+                      <div className="absolute top-0 right-0 w-14 h-14 border-r-4 border-t-4 border-gold z-10" />
+                      <div className="absolute bottom-0 left-0 w-14 h-14 border-l-4 border-b-4 border-gold z-10" />
+                      <div className="absolute bottom-0 right-0 w-14 h-14 border-r-4 border-b-4 border-gold z-10" />
+                      <div className="aspect-[4/5] overflow-hidden">
+                        <img
+                          src={person.image}
+                          alt={person.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-foreground mt-5 mb-1">{person.name}</h3>
-                  <p className="text-gold text-sm font-medium mb-2">({person.role})</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{person.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                    <h3 className="font-display text-xl font-bold text-foreground mt-5 mb-1">{person.name}</h3>
+                    <p className="text-gold text-sm font-medium mb-2">({person.role})</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{person.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
 
