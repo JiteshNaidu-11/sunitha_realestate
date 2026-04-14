@@ -149,3 +149,12 @@ html {
   animation: pageBannerFadeZoom 18s ease-in-out infinite;
   will-change: opacity, transform;
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

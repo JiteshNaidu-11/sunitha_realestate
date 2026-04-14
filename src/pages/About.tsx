@@ -23,6 +23,9 @@ const pioneers = [
   },
 ];
 
+/** Toggle to show/hide the Team/Pioneers section until client shares data */
+const SHOW_TEAM_SECTION = false;
+
 /** Toggle to show the "Carrying The Baton..." heading, copy, and three leader cards */
 const SHOW_CURRENT_LEADERS_SECTION = false;
 
@@ -90,7 +93,9 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.img
               initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
-              src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800" alt="Our Team" className="rounded-lg shadow-xl"
+              src="/photo.jpeg"
+              alt="Our Founder"
+              className="w-full max-h-[320px] sm:max-h-[380px] lg:max-h-[460px] object-contain rounded-lg shadow-xl bg-muted"
             />
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
               <h2 className="font-display text-3xl font-bold text-foreground mb-6">Who We Are</h2>
@@ -129,71 +134,38 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team / Leadership - Two-tier structure */}
-      <section className="relative py-24 overflow-hidden bg-cream">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')] bg-cover bg-center opacity-5" aria-hidden />
-        <div className="container relative z-10 mx-auto px-4">
-          {/* Pioneers */}
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="mb-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
-              <div className="lg:col-span-5">
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                  The Pioneers Of Sunita Real Estate's Successful Legacy
-                </h2>
-              </div>
-              <div className="lg:col-span-7">
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  The first generation of Sunita Real Estate's leaders, who laid the foundation over a decade ago, were visionary pioneers who spearheaded our initial growth. Their bold leadership, innovative strategies, and unwavering commitment paved the way for our emergence as a trusted name in Navi Mumbai real estate.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {pioneers.map((person, i) => (
-                <motion.div
-                  key={person.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="relative border-2 border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg">
-                    <div className="absolute top-0 left-0 w-14 h-14 border-l-4 border-t-4 border-gold z-10" />
-                    <div className="absolute top-0 right-0 w-14 h-14 border-r-4 border-t-4 border-gold z-10" />
-                    <div className="absolute bottom-0 left-0 w-14 h-14 border-l-4 border-b-4 border-gold z-10" />
-                    <div className="absolute bottom-0 right-0 w-14 h-14 border-r-4 border-b-4 border-gold z-10" />
-                    <div className="aspect-[4/5] overflow-hidden">
-                      <img
-                        src={person.image}
-                        alt={person.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-foreground mt-5 mb-2">{person.name}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{person.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Current Leaders — set SHOW_CURRENT_LEADERS_SECTION to true to restore */}
-          {SHOW_CURRENT_LEADERS_SECTION && (
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+      {/* Team / Leadership - Two-tier structure (hidden until client shares team info) */}
+      {SHOW_TEAM_SECTION && (
+        <section className="relative py-24 overflow-hidden bg-cream">
+          <div
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80')] bg-cover bg-center opacity-5"
+            aria-hidden
+          />
+          <div className="container relative z-10 mx-auto px-4">
+            {/* Pioneers */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mb-20"
+            >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
                 <div className="lg:col-span-5">
                   <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                    Carrying The Baton Of Growth Into The Future
+                    The Pioneers Of Sunita Real Estate's Successful Legacy
                   </h2>
                 </div>
                 <div className="lg:col-span-7">
                   <p className="text-muted-foreground leading-relaxed text-lg">
-                    The current generation of Sunita Real Estate's visionaries, inheriting a legacy of innovation and success, further propel our trajectory with forward-thinking approaches. Building upon the foundation laid by their predecessors, they embrace emerging technologies and expand our market reach across Navi Mumbai.
+                    The first generation of Sunita Real Estate's leaders, who laid the foundation over a decade ago, were visionary pioneers
+                    who spearheaded our initial growth. Their bold leadership, innovative strategies, and unwavering commitment paved the way
+                    for our emergence as a trusted name in Navi Mumbai real estate.
                   </p>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {currentLeaders.map((person, i) => (
+                {pioneers.map((person, i) => (
                   <motion.div
                     key={person.name}
                     initial={{ opacity: 0, y: 30 }}
@@ -215,16 +187,69 @@ const About = () => {
                         />
                       </div>
                     </div>
-                    <h3 className="font-display text-xl font-bold text-foreground mt-5 mb-1">{person.name}</h3>
-                    <p className="text-gold text-sm font-medium mb-2">({person.role})</p>
+                    <h3 className="font-display text-xl font-bold text-foreground mt-5 mb-2">{person.name}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{person.description}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
-          )}
-        </div>
-      </section>
+
+            {/* Current Leaders — set SHOW_CURRENT_LEADERS_SECTION to true to restore */}
+            {SHOW_CURRENT_LEADERS_SECTION && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
+                  <div className="lg:col-span-5">
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                      Carrying The Baton Of Growth Into The Future
+                    </h2>
+                  </div>
+                  <div className="lg:col-span-7">
+                    <p className="text-muted-foreground leading-relaxed text-lg">
+                      The current generation of Sunita Real Estate's visionaries, inheriting a legacy of innovation and success, further propel
+                      our trajectory with forward-thinking approaches. Building upon the foundation laid by their predecessors, they embrace
+                      emerging technologies and expand our market reach across Navi Mumbai.
+                    </p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {currentLeaders.map((person, i) => (
+                    <motion.div
+                      key={person.name}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="group"
+                    >
+                      <div className="relative border-2 border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg">
+                        <div className="absolute top-0 left-0 w-14 h-14 border-l-4 border-t-4 border-gold z-10" />
+                        <div className="absolute top-0 right-0 w-14 h-14 border-r-4 border-t-4 border-gold z-10" />
+                        <div className="absolute bottom-0 left-0 w-14 h-14 border-l-4 border-b-4 border-gold z-10" />
+                        <div className="absolute bottom-0 right-0 w-14 h-14 border-r-4 border-b-4 border-gold z-10" />
+                        <div className="aspect-[4/5] overflow-hidden">
+                          <img
+                            src={person.image}
+                            alt={person.name}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </div>
+                      </div>
+                      <h3 className="font-display text-xl font-bold text-foreground mt-5 mb-1">{person.name}</h3>
+                      <p className="text-gold text-sm font-medium mb-2">({person.role})</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{person.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Why Choose Us */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#0b1220] via-[#1b2433] to-[#3a2a18]">
