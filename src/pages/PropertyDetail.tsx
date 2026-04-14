@@ -4,9 +4,37 @@ import { properties } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { buildAbsoluteUrl, useSeo } from "@/lib/seo";
 import { toast } from "sonner";
+
+let propertyManifestCache: Record<string, string> | null = null;
+let propertyManifestVersionCache: number | null = null;
+let propertyManifestPromise: Promise<Record<string, string>> | null = null;
+
+function getPropertyManifest(): Promise<Record<string, string>> {
+  if (propertyManifestCache) return Promise.resolve(propertyManifestCache);
+  if (propertyManifestPromise) return propertyManifestPromise;
+  propertyManifestPromise = fetch("/properties/manifest.json", { cache: "no-cache" })
+    .then((r) => (r.ok ? r.json() : {}))
+    .catch(() => ({}))
+    .then((data) => {
+      const d = (data ?? {}) as { __v?: number; images?: Record<string, string> } | Record<string, string>;
+      if ("images" in d && d.images) {
+        propertyManifestVersionCache = typeof d.__v === "number" ? d.__v : Date.now();
+        propertyManifestCache = d.images;
+      } else {
+        propertyManifestVersionCache = Date.now();
+        propertyManifestCache = d as Record<string, string>;
+      }
+      return propertyManifestCache!;
+    });
+  return propertyManifestPromise;
+}
+
+function getPropertyFallbackImage() {
+  return "/images/property-placeholder.svg";
+}
 
 const PropertyDetail = () => {
   const { slug } = useParams();
@@ -16,7 +44,29 @@ const PropertyDetail = () => {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
-  const primaryImage = property?.gallery?.[0] ?? property?.image ?? "";
+  const [heroSrc, setHeroSrc] = useState<string>("");
+  const [cacheBust, setCacheBust] = useState<number>(0);
+
+  useEffect(() => {
+    if (!property) return;
+    getPropertyManifest().then((m) => {
+      const ext = m[property.slug];
+      const v = propertyManifestVersionCache ?? Date.now();
+      setCacheBust(v);
+      if (ext) {
+        setHeroSrc(`/properties/${property.slug}.${ext}?v=${v}`);
+      } else {
+        setHeroSrc(`/properties/${property.slug}.jpg?v=${v}`);
+      }
+    });
+  }, [property]);
+
+  const seoImage = useMemo(() => {
+    if (!property) return "";
+    const ext = propertyManifestCache?.[property.slug];
+    return ext ? `/properties/${property.slug}.${ext}` : `/properties/${property.slug}.jpg`;
+  }, [property, cacheBust]);
+
   const seoDescription =
     property?.metaDescription?.trim() ||
     (property?.overview ? property.overview.replace(/\s+/g, " ").trim().slice(0, 160) : "");
@@ -50,13 +100,13 @@ const PropertyDetail = () => {
           path: `/projects/${property.slug}`,
           keywords: propertyKeywords,
           type: "article",
-          image: primaryImage,
+          image: seoImage,
           structuredData: {
             "@context": "https://schema.org",
             "@type": "RealEstateListing",
             name: property.title,
             url: buildAbsoluteUrl(`/projects/${property.slug}`),
-            image: property.gallery,
+            image: [seoImage].filter(Boolean),
             description: seoDescription || property.overview,
             address: {
               "@type": "PostalAddress",
@@ -114,9 +164,13 @@ const PropertyDetail = () => {
       <section className="relative pt-24 pb-0">
         <div className="h-[50vh] relative">
           <img
-            src={primaryImage || property.image}
+            src={heroSrc || seoImage || property.image}
             alt={`${property.title} in ${property.location}`}
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = getPropertyFallbackImage();
+            }}
           />
           <div className="absolute inset-0 bg-dark/25" />
           <div className="absolute bottom-8 left-0 right-0 container mx-auto px-4">
@@ -199,14 +253,24 @@ const PropertyDetail = () => {
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Gallery</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {property.gallery.map((img, i) => (
-                    <img
-                      key={i}
-                      src={img}
-                      alt={`${property.title} ${property.location} image ${i + 1}`}
-                      className="rounded-lg w-full h-48 object-cover"
-                    />
-                  ))}
+                  {(property.gallery?.length ? property.gallery : Array.from({ length: 6 }, () => heroSrc)).map((img, i) => {
+                    const candidate = typeof img === "string" ? img.trim() : "";
+                    const isLocal = candidate.startsWith("/");
+                    const src = isLocal ? `${candidate}?v=${cacheBust}` : heroSrc || seoImage || getPropertyFallbackImage();
+                    return (
+                      <img
+                        key={i}
+                        src={src}
+                        alt={`${property.title} ${property.location} image ${i + 1}`}
+                        className="rounded-lg w-full h-48 object-cover bg-muted"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = heroSrc || seoImage || getPropertyFallbackImage();
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
