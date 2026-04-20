@@ -1,18 +1,54 @@
+export interface PropertyUnitVariant {
+  builtUpSqFt: number;
+  carpetSqFt: number;
+}
+
+export interface PropertyUnitConfigurationGroup {
+  /** e.g. "2 BHK" */
+  label: string;
+  variants: PropertyUnitVariant[];
+}
+
+/** Optional structured floor plans / sizes for the property detail page. */
+export interface PropertyUnitConfigurations {
+  propertyTypeLine?: string;
+  configurationsSummary?: string;
+  groups: PropertyUnitConfigurationGroup[];
+  disclaimer?: string;
+}
+
 export interface Property {
-  id: string;
+  /** Legacy numeric/string id used by older mock data. */
+  id?: string;
   slug: string;
   title: string;
   location: string;
   city: string;
-  price: string;
-  startingPrice: string;
-  configuration: string;
-  builder: string;
-  propertyType: string;
-  carpetArea: string;
-  totalFloors: number;
-  unitsAvailable: number;
-  possessionDate: string;
+
+  /** Newer schema fields (kept optional to support mixed datasets). */
+  developer?: string;
+  state?: string;
+  projectType?: string;
+  status?: string;
+  configurations?: string[];
+  carpetAreaRange?: string;
+  priceRange?: string;
+  pricingNote?: string;
+  reraNumber?: string;
+  description?: string;
+  microLocation?: string;
+  buyerType?: string;
+
+  /** Legacy schema fields used by existing pages/components. */
+  price?: string;
+  startingPrice?: string;
+  configuration?: string;
+  builder?: string;
+  propertyType?: string;
+  carpetArea?: string;
+  totalFloors?: number;
+  unitsAvailable?: number;
+  possessionDate?: string;
   /** Thumbnail on project cards / grids. Keep stable when you only add photos to the detail page. */
   image: string;
   /** Optional: card heading (detail page still uses `title`). */
@@ -32,20 +68,25 @@ export interface Property {
   hallmarkIcons?: { src: string; label: string }[];
   /** Optional heading above the hallmark marquee (e.g. old-site tagline) */
   hallmarkTitle?: string;
-  overview: string;
+  overview?: string;
   /** Short meta description for SEO (recommended ≤160 chars). Falls back to overview. */
   metaDescription?: string;
   highlights: string[];
-  locationAdvantages: string[];
-  investmentPotential: string;
-  amenities: string[];
+  locationAdvantages?: string[];
+  investmentPotential?: string;
+  amenities?: string[];
   amenityImages?: string[];
-  mapLink: string;
+  mapLink?: string;
   /** Google Maps iframe embed URL (e.g. .../maps?q=lat,lng&output=embed) */
   mapEmbedUrl?: string;
   /** Optional banner above footer area */
   ctaTitle?: string;
   ctaDescription?: string;
+  /** Grouped BHK variants with built-up and carpet areas (detail page). */
+  unitConfigurations?: PropertyUnitConfigurations;
+
+  /** Allow forward-compatible fields in mixed mock datasets. */
+  [key: string]: unknown;
 }
 
 export interface Blog {

@@ -10,10 +10,12 @@ interface PropertyCardProps {
   index?: number;
 }
 
-function showRupeeIcon(priceText: string): boolean {
-  const t = priceText.toLowerCase();
+function showRupeeIcon(priceText?: string | null): boolean {
+  const safe = (priceText ?? "").trim();
+  if (!safe) return false;
+  const t = safe.toLowerCase();
   if (t.includes("₹") || t.includes("cr") || t.includes("lac")) return true;
-  if (/\d/.test(priceText) && (t.includes("from ") || t.startsWith("from"))) return true;
+  if (/\d/.test(safe) && (t.includes("from ") || t.startsWith("from"))) return true;
   return false;
 }
 
@@ -99,8 +101,9 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
 
   const title = property.cardTitle ?? property.title;
   const tagline = property.cardTagline ?? property.location;
-  const badge = property.cardBadge ?? property.configuration;
-  const priceLine = property.cardPrice ?? property.price;
+  const badge = property.cardBadge ?? property.configuration ?? property.configurations?.[0] ?? property.status ?? "";
+  const priceLine = property.cardPrice ?? property.price ?? property.priceRange ?? property.startingPrice ?? "";
+  const typeLine = property.propertyType ?? property.projectType ?? "";
 
   return (
     <motion.div
@@ -161,12 +164,15 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
         </div>
       </div>
       <div className="p-5 bg-card">
+        <h3 className="font-display text-lg sm:text-xl font-bold text-card-foreground leading-tight mb-2 line-clamp-2">
+          {title}
+        </h3>
         <div className="flex items-start gap-2 text-muted-foreground text-sm mb-3">
           <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{property.location}</span>
         </div>
         <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground/90 mb-3">
-          {property.propertyType}
+          {typeLine}
         </p>
         <div
           className={`flex items-start gap-1.5 font-semibold text-base mb-4 ${showRupeeIcon(priceLine) ? "text-gold" : "text-foreground"}`}

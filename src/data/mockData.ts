@@ -1,6 +1,6 @@
-import { Property, Blog, Testimonial, Service } from "./types";
+import { Blog, Testimonial, Service } from "./types";
 
-export const properties: Property[] = [
+export const properties = [
     {
         "id":  "1",
         "slug":  "9pbr-adani-realty",
@@ -805,6 +805,7 @@ export const properties: Property[] = [
                           ],
         "mapLink":  "https://sunitarealestate.com/one-platinum-cbd-belapur/"
     },
+    /* Duplicate Kharghar residential card — portfolio entry superseded by `kharghar-residential` (Sector 37 creatives + unit matrix). Restore if you need this listing live again.
     {
         "id":  "13",
         "slug":  "praksyde-platinum",
@@ -879,6 +880,7 @@ export const properties: Property[] = [
                           ],
         "mapLink":  "https://sunitarealestate.com/praksyde-platinum/"
     },
+    */
     {
         "id":  "14",
         "slug":  "westwoods-platinum",
@@ -1665,7 +1667,454 @@ export const properties: Property[] = [
         "mapEmbedUrl":  "https://www.google.com/maps?q=CBD%20Belapur%20Sector%2015%20Navi%20Mumbai&z=15&output=embed",
         "ctaTitle":  "Offices & retail in CBD Belapur",
         "ctaDescription":  "Enquire about Mayuresh Planet — Grade A spaces, ready to move, by Mayuresh Group."
-    }
+    },
+    {
+        "id":  "26",
+        "slug":  "kharghar-residential",
+        "title":  "Premium Residences — Kharghar",
+        "cardTitle":  "Kharghar — 2, 3 & 4 BHK",
+        "cardBadge":  "Residential apartments",
+        "location":  "Kharghar, Navi Mumbai",
+        "city":  "Navi Mumbai",
+        "price":  "Price on Request",
+        "startingPrice":  "Price on Request",
+        "configuration":  "2, 3 & 4 BHK Apartments",
+        "builder":  "Details on enquiry",
+        "propertyType":  "Residential Apartments",
+        "carpetArea":  "711 – 1,818 sq.ft (carpet) across variants — see unit configurations",
+        "totalFloors":  0,
+        "unitsAvailable":  0,
+        "possessionDate":  "On request",
+        "image":  "/properties/kharghar-residential.jpeg",
+        "gallery":  [
+                        "/kharghar-residential/gallery-1.jpeg",
+                        "/kharghar-residential/gallery-2.jpeg",
+                        "/kharghar-residential/gallery-3.jpeg",
+                        "/kharghar-residential/gallery-4.jpeg",
+                        "/kharghar-residential/gallery-5.jpeg",
+                        "/kharghar-residential/gallery-6.jpeg",
+                        "/kharghar-residential/gallery-7.jpeg",
+                        "/kharghar-residential/gallery-8.jpeg",
+                        "/kharghar-residential/gallery-9.jpeg",
+                        "/kharghar-residential/gallery-10.jpeg",
+                        "/kharghar-residential/gallery-11.jpeg"
+                    ],
+        "metaDescription":  "Premium residential apartments in Kharghar — 2, 3 & 4 BHK with multiple built-up and carpet size options. Explore unit configurations with Sunita Real Estate, Navi Mumbai.",
+        "overview":  "A refined residential offering in Kharghar, Navi Mumbai, with thoughtfully planned 2, 3, and 4 BHK apartments. Multiple layout sizes let you choose the space that fits your family, lifestyle, and investment goals — all within one of the city's most established and well-connected neighbourhoods.",
+        "unitConfigurations":  {
+                                   "propertyTypeLine":  "Residential Apartments",
+                                   "configurationsSummary":  "2 BHK, 3 BHK, 4 BHK",
+                                   "disclaimer":  "Areas mentioned are approximate and subject to change as per final approved plans.",
+                                   "groups":  [
+                                                  {
+                                                      "label":  "2 BHK",
+                                                      "variants":  [
+                                                                       { "builtUpSqFt":  1335, "carpetSqFt":  801 },
+                                                                       { "builtUpSqFt":  1310, "carpetSqFt":  786 },
+                                                                       { "builtUpSqFt":  1270, "carpetSqFt":  762 },
+                                                                       { "builtUpSqFt":  1250, "carpetSqFt":  750 },
+                                                                       { "builtUpSqFt":  1245, "carpetSqFt":  747 },
+                                                                       { "builtUpSqFt":  1185, "carpetSqFt":  711 }
+                                                                   ]
+                                                  },
+                                                  {
+                                                      "label":  "3 BHK",
+                                                      "variants":  [
+                                                                       { "builtUpSqFt":  2590, "carpetSqFt":  1554 },
+                                                                       { "builtUpSqFt":  2560, "carpetSqFt":  1536 },
+                                                                       { "builtUpSqFt":  2020, "carpetSqFt":  1212 },
+                                                                       { "builtUpSqFt":  1730, "carpetSqFt":  1038 }
+                                                                   ]
+                                                  },
+                                                  {
+                                                      "label":  "4 BHK",
+                                                      "variants":  [
+                                                                       { "builtUpSqFt":  3030, "carpetSqFt":  1818 },
+                                                                       { "builtUpSqFt":  2870, "carpetSqFt":  1722 }
+                                                                   ]
+                                                  }
+                                              ]
+                               },
+        "highlights":  [
+                           "2, 3 & 4 BHK residential apartments",
+                           "Multiple size variants with clear built-up and carpet indications",
+                           "Kharghar — established locality with strong social infrastructure",
+                           "Suited for end-use and long-term investment in Navi Mumbai"
+                       ],
+        "locationAdvantages":  [
+                                   "Kharghar — planned node with hills, central park, and wide roads",
+                                   "Strong connectivity toward Belapur, Vashi, and Panvel corridor",
+                                   "Proximity to schools, hospitals, retail, and everyday conveniences",
+                                   "Access to proposed / improving road links across Navi Mumbai"
+                               ],
+        "investmentPotential":  "Kharghar remains a preferred mid-to-premium residential belt in Navi Mumbai; diversified 2–4 BHK inventory can appeal to both families upgrading within the node and investors tracking steady end-user demand.",
+        "amenities":  [
+                          "Landscaped open spaces",
+                          "Club / lifestyle amenities (as per project)",
+                          "Security & access control",
+                          "Power backup for common areas",
+                          "Covered parking",
+                          "Children's play area"
+                      ],
+        "mapLink":  "https://www.google.com/maps/search/?api=1&query=Kharghar+Navi+Mumbai",
+        "mapEmbedUrl":  "https://www.google.com/maps?q=Kharghar%20Navi%20Mumbai&z=13&output=embed",
+        "ctaTitle":  "Kharghar residences",
+        "ctaDescription":  "Ask for availability, exact tower / wing options, and the latest pricing for 2, 3 & 4 BHK layouts in Kharghar."
+    },
+
+{
+  title: "Raheja Atlantis I",
+  slug: "raheja-atlantis-i",
+  developer: "Raheja Universal Pvt Ltd",
+  location: "Juinagar, Navi Mumbai, Maharashtra 400705",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "New Launch",
+
+  configurations: ["3 BHK", "4 BHK"],
+  carpetAreaRange: "1360 - 2025 sq.ft",
+
+  priceRange: "Rs. 5.49 Cr - 8.17 Cr",
+  pricingNote: "Current quoted pricing varies based on carpet area and unit type. Final pricing may vary depending on inventory and floor rise.",
+
+  possessionDate: "Dec 2031",
+  reraNumber: "PM1330002501097",
+
+  description: "Raheja Atlantis I is a premium residential development located in Juinagar, Navi Mumbai, offering spacious 3 & 4 BHK homes designed for modern urban living.",
+
+  highlights: [
+    "New launch in Juinagar",
+    "3 & 4 BHK homes",
+    "1360 - 2025 sq.ft carpet",
+    "Rs. 5.49 Cr - 8.17 Cr",
+    "Possession Dec 2031",
+    "RERA registered"
+  ],
+
+  microLocation: "Atlantis, Juinagar, Navi Mumbai, Maharashtra 400705",
+  buyerType: "Commuter-led households and premium buyers",
+
+  image: "/properties/Raheja-Atlantis-Juinagar.jpeg",
+  gallery: ["/properties/Raheja-Atlantis-Juinagar.jpeg"]
+},
+
+{
+  title: "24 High",
+  slug: "24-high",
+  developer: "Dream Apex Realities Limited",
+  location: "Opposite DY Patil Stadium, Nerul, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Commercial",
+  status: "Under Construction",
+
+  configurations: ["Office Spaces", "Retail Shops"],
+  carpetAreaRange: "430 - 820 sq.ft",
+
+  priceRange: "Rs. 92L - 1.74 Cr",
+  pricingNote: "Pricing varies based on unit type, floor rise and availability.",
+
+  possessionDate: "Apr 2026",
+  reraNumber: "P51700025150",
+
+  description: "24 High is a commercial development in Nerul offering office spaces and retail units with strong visibility near DY Patil Stadium.",
+
+  highlights: [
+    "Commercial project in Nerul",
+    "Office & retail spaces",
+    "430 - 820 sq.ft carpet",
+    "Rs. 92L - 1.74 Cr",
+    "Opposite DY Patil Stadium",
+    "Possession Apr 2026"
+  ],
+
+  microLocation: "Opposite DY Patil Stadium, Nerul, Navi Mumbai",
+  buyerType: "Commercial investors and business owners",
+
+  image: "/properties/24High.jpg",
+  gallery: ["/properties/24High.jpg"]
+},
+
+{
+  title: "Raheja Lunaris",
+  slug: "raheja-lunaris",
+  developer: "Raheja Universal Pvt Ltd",
+  location: "Raheja International Corporate City, Juinagar, Navi Mumbai, Maharashtra 400706",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "New Launch",
+
+  configurations: ["1.5 BHK", "2 BHK", "2.5 BHK"],
+  carpetAreaRange: "452 - 725 sq.ft",
+
+  priceRange: "Rs. 1.12 Cr - 1.89 Cr",
+  pricingNote: "Pricing depends on carpet area, inventory and floor rise.",
+
+  possessionDate: "Dec 2029",
+  reraNumber: "P51700076867",
+
+  description: "Raheja Lunaris is a residential project in Juinagar offering 1.5, 2 and 2.5 BHK homes designed for modern urban living.",
+
+  highlights: [
+    "New launch in Juinagar",
+    "1.5, 2 & 2.5 BHK homes",
+    "452 - 725 sq.ft carpet",
+    "Rs. 1.12 Cr - 1.89 Cr",
+    "Possession Dec 2029",
+    "RERA registered"
+  ],
+
+  microLocation: "Juinagar, Navi Mumbai",
+  buyerType: "Commuter-led households",
+
+  image: "/properties/raheja-lunaris-juinagar-banner.webp",
+  gallery: ["/properties/raheja-lunaris-juinagar-banner.webp"]
+},
+
+{
+  title: "Kamdhenu Zeus",
+  slug: "kamdhenu-zeus",
+  developer: "Kamdhenu Builders & Developers",
+  location: "Opp. Dr. DY Patil University, MIDC Industrial Area, Shiravane, Nerul, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Commercial",
+  status: "New Launch",
+
+  configurations: ["Premium Offices", "High-Street Retail"],
+  carpetAreaRange: "484 - 1587 sq.ft",
+
+  priceRange: "Rs. 1.25 Cr - 2.38 Cr",
+  pricingNote: "Current quoted pricing varies based on unit type, carpet area, and availability. Subject to confirmation.",
+
+  possessionDate: "Dec 2030",
+  reraNumber: "PC1330002500481",
+
+  description: "Kamdhenu Zeus, also known as Codename Equirise, is a launch-stage commercial development in Nerul offering premium office spaces and high-street retail in the TTC and Shiravane belt.",
+
+  highlights: [
+    "New launch commercial project in Nerul",
+    "Premium offices and high-street retail",
+    "Carpet area from 484 - 1587 sq.ft",
+    "Price range Rs. 1.25 Cr - 2.38 Cr",
+    "Located near DY Patil University and Shiravane industrial area",
+    "Possession Dec 2030"
+  ],
+
+  microLocation: "Opp. Dr. DY Patil University, MIDC Industrial Area, Shiravane, Nerul, Navi Mumbai",
+  buyerType: "Commercial buyers and investors",
+
+  image: "/properties/kamdhenu-zeus-nerul.webp",
+  gallery: ["/properties/kamdhenu-zeus-nerul.webp"]
+},
+
+{
+  title: "Sai World One",
+  slug: "sai-world-one",
+  developer: "Paradise Group",
+  location: "D 223, Thane – Belapur Rd, MIDC Industrial Area, Shiravane, Nerul, Navi Mumbai, Maharashtra 400706",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "New Launch",
+
+  configurations: ["2 BHK", "3 BHK"],
+  carpetAreaRange: "860 - 1290 sq.ft",
+
+  priceRange: "Rs. 1.80 Cr - 2.70 Cr",
+  pricingNote: "Pricing varies based on unit type, inventory and floor rise.",
+
+  possessionDate: "Dec 2029",
+  reraNumber: "TBA",
+
+  description: "Sai World One is a residential project in Nerul offering 2 & 3 BHK homes designed for premium end-use buyers in a well-connected location.",
+
+  highlights: [
+    "New launch in Nerul",
+    "2 & 3 BHK homes",
+    "860 - 1290 sq.ft carpet",
+    "Rs. 1.80 Cr - 2.70 Cr",
+    "Possession Dec 2029"
+  ],
+
+  microLocation: "MIDC Industrial Area, Shiravane, Nerul, Navi Mumbai",
+  buyerType: "Premium end-use buyers",
+
+  image: "/properties/Sai-World-One-Nerul-Banner-01.webp",
+  gallery: ["/properties/Sai-World-One-Nerul-Banner-01.webp"]
+},
+
+{
+  title: "Kasturi Regius Luxe",
+  slug: "kasturi-regius-luxe",
+  developer: "Kasturi Developers",
+  location: "Sector 12 Kharghar, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "Under Construction",
+
+  configurations: ["2 BHK", "3 BHK", "4 BHK"],
+  carpetAreaRange: "812 - 1945 sq.ft",
+
+  priceRange: "Rs. 1.62 Cr - 3.88 Cr",
+  pricingNote: "Pricing varies based on unit type and availability.",
+
+  possessionDate: "Dec 2027",
+  reraNumber: "P52000079465",
+
+  description: "Kasturi Regius Luxe is a residential project in Kharghar offering 2, 3 & 4 BHK homes.",
+
+  highlights: [
+    "2, 3 & 4 BHK homes",
+    "812 - 1945 sq.ft carpet",
+    "Possession Dec 2027"
+  ],
+
+  microLocation: "Sector 12 Kharghar",
+  buyerType: "Upgrade families",
+
+  image: "/properties/Kasturi-Regius-Luxe-Kharghar-Banner-1.webp",
+  gallery: ["/properties/Kasturi-Regius-Luxe-Kharghar-Banner-1.webp"]
+},
+
+{
+  title: "Bhagwati Avenoir",
+  slug: "bhagwati-avenoir",
+  developer: "Bhagwati Developers",
+  location: "Sector 19 Kharghar, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "New Launch",
+
+  configurations: ["2 BHK", "3 BHK"],
+  carpetAreaRange: "804 - 1152 sq.ft",
+
+  priceRange: "Rs. 1.65 Cr - 2 Cr",
+  pricingNote: "Pricing varies based on unit type and availability.",
+
+  possessionDate: "Dec 2028",
+  reraNumber: "TBA",
+
+  description: "Bhagwati Avenoir is a residential project in Kharghar offering 2 & 3 BHK homes.",
+
+  highlights: [
+    "2 & 3 BHK homes",
+    "804 - 1152 sq.ft carpet",
+    "Possession Dec 2028"
+  ],
+
+  microLocation: "Sector 19 Kharghar",
+  buyerType: "Upgrade families",
+
+  image: "/properties/Bhagwati-Avenoir-Kharghar-Banner-1.webp",
+  gallery: ["/properties/Bhagwati-Avenoir-Kharghar-Banner-1.webp"]
+},
+
+{
+  title: "Today Royal I Land 27",
+  slug: "today-royal-i-land-27",
+  developer: "Today Royal Group",
+  location: "Sector 27 Kharghar, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "New Launch",
+
+  configurations: ["2 BHK", "3 BHK"],
+  carpetAreaRange: "663 - 1308 sq.ft",
+
+  priceRange: "Rs. 1.45 Cr - 2.85 Cr",
+  pricingNote: "Pricing varies based on unit type and availability.",
+
+  possessionDate: "Dec 2030",
+  reraNumber: "PR1270002501658",
+
+  description: "Today Royal I Land 27 is a residential project in Kharghar offering 2 & 3 BHK homes.",
+
+  highlights: [
+    "2 & 3 BHK homes",
+    "663 - 1308 sq.ft carpet",
+    "Possession Dec 2030"
+  ],
+
+  microLocation: "Sector 27 Kharghar",
+  buyerType: "Upgrade families",
+
+  image: "/properties/today-i-land-27-project-project-large-image1-5880.jpg",
+  gallery: ["/properties/today-i-land-27-project-project-large-image1-5880.jpg"]
+},
+
+{
+  title: "Platinum Oakwoods",
+  slug: "platinum-oakwoods",
+  developer: "Platinum Group",
+  location: "Sector 30 Nerul, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "Under Construction",
+
+  configurations: ["2 BHK", "3 BHK"],
+  carpetAreaRange: "850 - 2183 sq.ft",
+
+  priceRange: "Rs. 2.35 Cr - 7.26 Cr",
+  pricingNote: "Pricing varies based on unit type and availability.",
+
+  possessionDate: "Dec 2027",
+  reraNumber: "P51700079286",
+
+  description: "Platinum Oakwoods is a residential project in Nerul offering 2 & 3 BHK homes.",
+
+  highlights: [
+    "2 & 3 BHK homes",
+    "850 - 2183 sq.ft carpet",
+    "Possession Dec 2027"
+  ],
+
+  microLocation: "Sector 30 Nerul",
+  buyerType: "Premium buyers",
+
+  image: "/properties/platinum_oakwoods-nerul-.webp",
+  gallery: ["/properties/platinum_oakwoods-nerul-.webp"]
+},
+
+{
+  title: "Kamdhenu Zenith",
+  slug: "kamdhenu-zenith",
+  developer: "Kamdhenu Builders & Developers",
+  location: "Nerul West, Navi Mumbai",
+  city: "Navi Mumbai",
+  state: "Maharashtra",
+  projectType: "Residential",
+  status: "Under Construction",
+
+  configurations: ["2 BHK"],
+  carpetAreaRange: "677 sq.ft",
+
+  priceRange: "Rs. 1.69 Cr",
+  pricingNote: "Pricing varies based on availability.",
+
+  possessionDate: "Dec 2028",
+  reraNumber: "PM1330002400003",
+
+  description: "Kamdhenu Zenith is a residential project in Nerul offering 2 BHK homes.",
+
+  highlights: [
+    "2 BHK homes",
+    "677 sq.ft carpet",
+    "Possession Dec 2028"
+  ],
+
+  microLocation: "Nerul West",
+  buyerType: "End-use buyers",
+
+  image: "/properties/Kamdhenu-Zenith-Nerul-Banner-1-1.webp",
+  gallery: ["/properties/Kamdhenu-Zenith-Nerul-Banner-1-1.webp"]
+}
 ];
 
 export const blogs: Blog[] = [

@@ -22,7 +22,7 @@ const Projects = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {properties.map((property, index) => (
-              <PropertyCard key={property.id} property={property} index={index} />
+              <PropertyCard key={property.slug} property={property} index={index} />
             ))}
           </div>
         </div>

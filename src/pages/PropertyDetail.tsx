@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { properties } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft } f
 import { useEffect, useMemo, useState } from "react";
 import { buildAbsoluteUrl, useSeo } from "@/lib/seo";
 import { toast } from "sonner";
+import PropertyUnitConfigurationSection from "@/components/PropertyUnitConfigurationSection";
 
 let propertyManifestCache: Record<string, string> | null = null;
 let propertyManifestVersionCache: number | null = null;
@@ -39,6 +40,7 @@ function getPropertyFallbackImage() {
 const PropertyDetail = () => {
   const { slug } = useParams();
   const property = properties.find((p) => p.slug === slug);
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -56,7 +58,11 @@ const PropertyDetail = () => {
       if (ext) {
         setHeroSrc(`/properties/${property.slug}.${ext}?v=${v}`);
       } else {
-        setHeroSrc(`/properties/${property.slug}.jpg?v=${v}`);
+        const localFromImage = (property.image ?? "").trim().startsWith("/") ? (property.image ?? "").trim() : "";
+        const localFromGallery =
+          (property.gallery?.[0] ?? "").trim().startsWith("/") ? (property.gallery?.[0] ?? "").trim() : "";
+        const fallbackSrc = localFromImage || localFromGallery || `/properties/${property.slug}.jpg`;
+        setHeroSrc(`${fallbackSrc}?v=${v}`);
       }
     });
   }, [property]);
@@ -71,21 +77,28 @@ const PropertyDetail = () => {
     property?.metaDescription?.trim() ||
     (property?.overview ? property.overview.replace(/\s+/g, " ").trim().slice(0, 160) : "");
 
+  const safeLower = (v?: string | null) => (v ?? "").toLowerCase();
+  const derivedBuilder = (property?.builder ?? property?.developer ?? "").trim();
+  const derivedConfig = (property?.configuration ?? property?.configurations?.join(", ") ?? "").trim();
+  const derivedType = (property?.propertyType ?? property?.projectType ?? "").trim();
+  const derivedPrice = (property?.price ?? property?.priceRange ?? property?.startingPrice ?? "").trim();
+  const derivedCarpet = (property?.carpetArea ?? property?.carpetAreaRange ?? "").trim();
+
   const propertyKeywords = property
     ? Array.from(
         new Set(
           [
-            property.title.toLowerCase(),
-            `${property.title.toLowerCase()} ${property.city.toLowerCase()}`,
-            `${property.title.toLowerCase()} ${property.location.toLowerCase()}`,
-            `${property.builder.toLowerCase()} projects in ${property.city.toLowerCase()}`,
-            `${property.configuration.toLowerCase()} in ${property.location.toLowerCase()}`,
-            `${property.propertyType.toLowerCase()} property in ${property.city.toLowerCase()}`,
-            `buy property in ${property.city.toLowerCase()}`,
-            `${property.location.toLowerCase()} real estate`,
-            `real estate ${property.city.toLowerCase()}`,
+            safeLower(property.title),
+            `${safeLower(property.title)} ${safeLower(property.city)}`,
+            `${safeLower(property.title)} ${safeLower(property.location)}`,
+            `${safeLower(derivedBuilder)} projects in ${safeLower(property.city)}`,
+            `${safeLower(derivedConfig)} in ${safeLower(property.location)}`,
+            `${safeLower(derivedType)} property in ${safeLower(property.city)}`,
+            `buy property in ${safeLower(property.city)}`,
+            `${safeLower(property.location)} real estate`,
+            `real estate ${safeLower(property.city)}`,
             `navi mumbai real estate`,
-            `${property.propertyType.toLowerCase()} navi mumbai`,
+            `${safeLower(derivedType)} navi mumbai`,
             property.slug.replace(/-/g, " "),
           ].filter(Boolean)
         )
@@ -149,11 +162,13 @@ const PropertyDetail = () => {
       <Layout>
         <div className="pt-32 pb-20 text-center">
           <h1 className="font-display text-3xl font-bold text-foreground">Property Not Found</h1>
-          <Link to="/projects">
-            <Button variant="gold" className="mt-4">
-              Back to Projects
-            </Button>
-          </Link>
+          <Button
+            variant="gold"
+            className="mt-4"
+            onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/projects"))}
+          >
+            Back to Projects
+          </Button>
         </div>
       </Layout>
     );
@@ -168,19 +183,38 @@ const PropertyDetail = () => {
             alt={`${property.title} in ${property.location}`}
             className="w-full h-full object-cover"
             onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = getPropertyFallbackImage();
+              const fallback = getPropertyFallbackImage();
+              const tried = new Set<string>([
+                (heroSrc || "").split("?")[0],
+                (seoImage || "").split("?")[0],
+                (property.image || "").split("?")[0],
+                fallback,
+              ].filter(Boolean));
+
+              const candidates = [
+                (seoImage || "").trim(),
+                (property.image || "").trim(),
+                (property.gallery?.[0] || "").trim(),
+                fallback,
+              ]
+                .filter(Boolean)
+                .map((s) => (s.startsWith("/") ? `${s}?v=${cacheBust}` : s));
+
+              const next = candidates.find((c) => !tried.has(c.split("?")[0])) || fallback;
+              if (e.currentTarget.src === next) return;
+              e.currentTarget.src = next;
             }}
           />
           <div className="absolute inset-0 bg-dark/25" />
           <div className="absolute bottom-8 left-0 right-0 container mx-auto px-4">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <Link
-                to="/projects"
+              <button
+                type="button"
+                onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/projects"))}
                 className="text-primary-foreground/80 text-sm flex items-center gap-2 mb-4 hover:text-gold transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" /> Back to Projects
-              </Link>
+              </button>
               <h1 className="font-display text-3xl md:text-5xl font-bold text-primary-foreground">{property.title}</h1>
               <div className="flex items-center gap-2 text-primary-foreground/80 mt-2">
                 <MapPin className="w-4 h-4" /> {property.location}
@@ -196,10 +230,10 @@ const PropertyDetail = () => {
             <div className="lg:col-span-2 space-y-8">
               <div className="bg-card p-6 rounded-lg shadow-md grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { icon: IndianRupee, label: "Price", value: property.price },
-                  { icon: Home, label: "Configuration", value: property.configuration },
-                  { icon: Layers, label: "Carpet Area", value: property.carpetArea },
-                  { icon: Building, label: "Floors", value: `${property.totalFloors} Floors` },
+                  { icon: IndianRupee, label: "Price", value: derivedPrice || "Price on Request" },
+                  { icon: Home, label: "Configuration", value: derivedConfig || "—" },
+                  { icon: Layers, label: "Carpet Area", value: derivedCarpet || "—" },
+                  { icon: Building, label: "Floors", value: property.totalFloors ? `${property.totalFloors} Floors` : "—" },
                 ].map((item) => (
                   <div key={item.label} className="text-center">
                     <item.icon className="w-5 h-5 text-gold mx-auto mb-1" />
@@ -211,13 +245,15 @@ const PropertyDetail = () => {
 
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Overview</h2>
-                <p className="text-muted-foreground leading-relaxed">{property.overview}</p>
+                <p className="text-muted-foreground leading-relaxed">{property.overview ?? property.description ?? ""}</p>
               </div>
+
+              {property.unitConfigurations ? <PropertyUnitConfigurationSection data={property.unitConfigurations} /> : null}
 
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Project Highlights</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {property.highlights.map((h) => (
+                  {(property.highlights ?? []).map((h) => (
                     <div key={h} className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                       <span className="text-card-foreground text-sm">{h}</span>
@@ -229,7 +265,7 @@ const PropertyDetail = () => {
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Amenities</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {property.amenities.map((a) => (
+                  {(property.amenities ?? []).map((a) => (
                     <div key={a} className="flex items-center gap-2 bg-secondary p-3 rounded-md">
                       <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                       <span className="text-secondary-foreground text-sm">{a}</span>
@@ -241,7 +277,7 @@ const PropertyDetail = () => {
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Location Advantages</h2>
                 <div className="space-y-2">
-                  {property.locationAdvantages.map((l) => (
+                  {(property.locationAdvantages ?? []).map((l) => (
                     <div key={l} className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-gold flex-shrink-0" />
                       <span className="text-card-foreground text-sm">{l}</span>
@@ -322,7 +358,7 @@ const PropertyDetail = () => {
                   </Button>
                 </form>
                 <div className="mt-6 pt-4 border-t border-border">
-                  <p className="text-xs text-muted-foreground mb-1">Builder: {property.builder}</p>
+                  <p className="text-xs text-muted-foreground mb-1">Builder: {derivedBuilder || "—"}</p>
                   <p className="text-xs text-muted-foreground mb-1">Possession: {property.possessionDate}</p>
                   <p className="text-xs text-muted-foreground">
                     Units Available: {property.unitsAvailable > 0 ? property.unitsAvailable : "Check with our team"}
