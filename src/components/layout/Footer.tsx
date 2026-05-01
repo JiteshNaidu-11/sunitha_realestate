@@ -95,6 +95,17 @@ const Footer = () => {
         <p className="text-center text-sm text-primary-foreground/40">
           Copyright © 2026 Sunita Real Estate
         </p>
+        <p className="text-center text-xs text-primary-foreground/40 mt-2">
+          Design &amp; maintained by{" "}
+          <a
+            href="https://webnxt.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-foreground/60 hover:text-gold transition-colors underline underline-offset-4"
+          >
+            Webnxt.
+          </a>
+        </p>
       </div>
     </footer>
   );

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, IndianRupee } from "lucide-react";
+import { IndianRupee } from "lucide-react";
 import { Property } from "@/data/types";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -32,6 +32,23 @@ let manifestVersionCache: number | null = null;
 let manifestPromise: Promise<Record<string, string>> | null = null;
 
 function getManifest(): Promise<Record<string, string>> {
+  // In dev, avoid module-level caching so asset updates reflect immediately.
+  if (import.meta.env.DEV) {
+    return fetch("/properties/manifest.json", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : {}))
+      .catch(() => ({}))
+      .then((data) => {
+        const d = (data ?? {}) as { __v?: number; images?: Record<string, string> } | Record<string, string>;
+        if ("images" in d && d.images) {
+          manifestVersionCache = typeof d.__v === "number" ? d.__v : Date.now();
+          manifestCache = d.images;
+        } else {
+          manifestVersionCache = Date.now();
+          manifestCache = d as Record<string, string>;
+        }
+        return manifestCache ?? {};
+      });
+  }
   if (manifestCache) return Promise.resolve(manifestCache);
   if (manifestPromise) return manifestPromise;
   manifestPromise = fetch("/properties/manifest.json", { cache: "no-cache" })
@@ -60,7 +77,6 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [failed, setFailed] = useState(false);
   const [resolved, setResolved] = useState(false);
-  const [cacheBust, setCacheBust] = useState<number>(0);
 
   useEffect(() => {
     setImgSrc(preferredImage);
@@ -74,7 +90,6 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
     getManifest().then((m) => {
       const ext = m[property.slug];
       const v = manifestVersionCache ?? Date.now();
-      setCacheBust(v);
       if (ext) {
         setImgSrc(`/properties/${property.slug}.${ext}?v=${v}`);
       } else {
@@ -89,21 +104,53 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
     });
   }, [property.slug, property.image, property.gallery]);
 
-  useEffect(() => {
-    // Debug root cause in dev only.
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log("IMAGE:", property.slug, property.image);
-      // eslint-disable-next-line no-console
-      console.log("IMAGE PATH:", `/properties/${property.slug}.jpg`);
-    }
-  }, [property.slug, property.image]);
-
   const title = property.cardTitle ?? property.title;
-  const tagline = property.cardTagline ?? property.location;
-  const badge = property.cardBadge ?? property.configuration ?? property.configurations?.[0] ?? property.status ?? "";
+  const developerLine = (property.developer ?? property.builder ?? "").trim();
+  const statusLine = (property.status ?? "").trim();
+  const locationLine = (property.microLocation ?? property.city ?? "").trim();
+  const optionalTag = (property.cardBadge ?? property.hallmarkTitle ?? "").trim();
+
+  const configurationLine = (() => {
+    if (property.configurations?.length) {
+      return property.configurations.join(" & ");
+    }
+    return (property.configuration ?? "").trim();
+  })();
+
   const priceLine = property.cardPrice ?? property.price ?? property.priceRange ?? property.startingPrice ?? "";
   const typeLine = property.propertyType ?? property.projectType ?? "";
+
+  const brochureSubject = encodeURIComponent(`Brochure request — ${property.title}`);
+  const brochureBody = encodeURIComponent(
+    `Hi,\n\nPlease share the brochure for "${property.title}" (${property.slug}).\n\nThanks`
+  );
+  const brochureHref = `mailto:sunitaestate@gmail.com?subject=${brochureSubject}&body=${brochureBody}`;
+
+  const summaryLine = (() => {
+    const parts: string[] = [];
+    if (configurationLine) parts.push(`${configurationLine} in ${locationLine || property.city || "Navi Mumbai"}.`);
+    const carpet = (property.carpetAreaRange ?? property.carpetArea ?? "").trim();
+    if (carpet) parts.push(`Carpet ${carpet}.`);
+    const possession = (property.possessionDate ?? "").trim();
+    if (possession) parts.push(`Possession ${possession}.`);
+    const joined = parts.join(" ").replace(/\s+/g, " ").trim();
+    return joined || (property.description ?? property.overview ?? "").replace(/\s+/g, " ").trim();
+  })();
+
+  const reraLine = (() => {
+    const r = (property.reraNumber ?? "").trim();
+    if (!r) return "";
+    if (/maha\s*rera/i.test(r) || /^rera\b/i.test(r)) return r;
+    return `MahaRERA: ${r}`;
+  })();
+
+  const pricePill = (() => {
+    const p = (priceLine ?? "").trim();
+    if (!p) return "";
+    if (/^from\b/i.test(p)) return p;
+    if (/request/i.test(p.toLowerCase())) return p;
+    return `From ${p}`;
+  })();
 
   return (
     <motion.div
@@ -111,9 +158,9 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group bg-card rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border/40"
+      className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border/40"
     >
-      <div className="relative overflow-hidden h-[190px] sm:h-[220px] lg:h-[240px] bg-[#f5f5f5]">
+      <div className="relative overflow-hidden h-[240px] sm:h-[280px] lg:h-[300px] bg-[#f5f5f5]">
         {/* Hard fallback UI (no overlay) */}
         {failed ? (
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-neutral-100 to-neutral-200">
@@ -148,43 +195,68 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
               }}
             />
             {/* Overlay only when we are actually rendering an image */}
-            <div className="absolute inset-0 z-[2] pointer-events-none bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute inset-0 z-[2] pointer-events-none bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
           </>
         )}
-        <div className="absolute top-3 left-3 right-3 sm:right-auto max-w-[calc(100%-1.5rem)] sm:max-w-[90%]">
-          <span className="inline-block bg-background/95 text-foreground text-[11px] sm:text-xs font-semibold leading-snug px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm line-clamp-2">
-            {badge}
-          </span>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 pt-12">
-          <h3 className="font-display text-lg sm:text-xl font-bold text-white drop-shadow-sm leading-tight line-clamp-2">
-            {title}
-          </h3>
-          <p className="text-white/85 text-sm mt-1 line-clamp-2">{tagline}</p>
+        <div className="absolute top-3 left-3 right-3 z-[3] flex flex-wrap items-center gap-2">
+          {statusLine ? (
+            <span className="inline-flex items-center bg-background/95 text-foreground text-[11px] sm:text-xs font-semibold leading-snug px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
+              {statusLine}
+            </span>
+          ) : null}
+          {locationLine ? (
+            <span className="inline-flex items-center bg-background/95 text-foreground text-[11px] sm:text-xs font-semibold leading-snug px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
+              {locationLine}
+            </span>
+          ) : null}
+          {optionalTag ? (
+            <span className="inline-flex items-center bg-gold/90 text-dark text-[11px] sm:text-xs font-semibold leading-snug px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
+              {optionalTag}
+            </span>
+          ) : null}
         </div>
       </div>
-      <div className="p-5 bg-card">
-        <h3 className="font-display text-lg sm:text-xl font-bold text-card-foreground leading-tight mb-2 line-clamp-2">
-          {title}
-        </h3>
-        <div className="flex items-start gap-2 text-muted-foreground text-sm mb-3">
-          <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
-          <span>{property.location}</span>
+      <div className="p-6 sm:p-7 bg-card space-y-5">
+        <div className="space-y-2">
+          {developerLine ? <p className="text-xs text-muted-foreground">{developerLine}</p> : null}
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-card-foreground leading-tight line-clamp-2">{title}</h3>
+          {typeLine ? (
+            <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground/90">{typeLine}</p>
+          ) : null}
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{summaryLine}</p>
         </div>
-        <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground/90 mb-3">
-          {typeLine}
-        </p>
-        <div
-          className={`flex items-start gap-1.5 font-semibold text-base mb-4 ${showRupeeIcon(priceLine) ? "text-gold" : "text-foreground"}`}
-        >
-          {showRupeeIcon(priceLine) ? <IndianRupee className="w-4 h-4 shrink-0 mt-1" /> : null}
-          <span className="leading-snug">{priceLine}</span>
+
+        <div className="flex flex-wrap gap-2">
+          {configurationLine ? (
+            <span className="inline-flex items-center rounded-full border border-border/60 bg-secondary/60 px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              {configurationLine}
+            </span>
+          ) : null}
+          {pricePill ? (
+            <span
+              className={`inline-flex items-center gap-1 rounded-full border border-border/60 bg-secondary/60 px-3 py-1 text-xs font-semibold text-secondary-foreground ${
+                showRupeeIcon(pricePill) ? "text-gold" : ""
+              }`}
+            >
+              {showRupeeIcon(pricePill) ? <IndianRupee className="w-3.5 h-3.5" /> : null}
+              {pricePill}
+            </span>
+          ) : null}
+          {reraLine ? (
+            <span className="inline-flex items-center rounded-full border border-border/60 bg-secondary/60 px-3 py-1 text-xs font-semibold text-secondary-foreground">
+              {reraLine}
+            </span>
+          ) : null}
         </div>
-        <Link to={`/projects/${property.slug}`}>
-          <Button variant="gold" className="w-full">
-            View Details
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Button asChild variant="outline" className="w-full border-gold/40 hover:bg-secondary">
+            <Link to={`/projects/${property.slug}`}>View details</Link>
           </Button>
-        </Link>
+          <Button asChild variant="gold" className="w-full">
+            <a href={brochureHref}>Request Brochure</a>
+          </Button>
+        </div>
       </div>
     </motion.div>
   );

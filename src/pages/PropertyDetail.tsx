@@ -14,6 +14,23 @@ let propertyManifestVersionCache: number | null = null;
 let propertyManifestPromise: Promise<Record<string, string>> | null = null;
 
 function getPropertyManifest(): Promise<Record<string, string>> {
+  // In dev, avoid module-level caching so asset updates reflect immediately.
+  if (import.meta.env.DEV) {
+    return fetch("/properties/manifest.json", { cache: "no-cache" })
+      .then((r) => (r.ok ? r.json() : {}))
+      .catch(() => ({}))
+      .then((data) => {
+        const d = (data ?? {}) as { __v?: number; images?: Record<string, string> } | Record<string, string>;
+        if ("images" in d && d.images) {
+          propertyManifestVersionCache = typeof d.__v === "number" ? d.__v : Date.now();
+          propertyManifestCache = d.images;
+        } else {
+          propertyManifestVersionCache = Date.now();
+          propertyManifestCache = d as Record<string, string>;
+        }
+        return propertyManifestCache ?? {};
+      });
+  }
   if (propertyManifestCache) return Promise.resolve(propertyManifestCache);
   if (propertyManifestPromise) return propertyManifestPromise;
   propertyManifestPromise = fetch("/properties/manifest.json", { cache: "no-cache" })
@@ -83,6 +100,86 @@ const PropertyDetail = () => {
   const derivedType = (property?.propertyType ?? property?.projectType ?? "").trim();
   const derivedPrice = (property?.price ?? property?.priceRange ?? property?.startingPrice ?? "").trim();
   const derivedCarpet = (property?.carpetArea ?? property?.carpetAreaRange ?? "").trim();
+
+  const amenitiesItems = useMemo(() => {
+    if (!property) return [];
+    const direct = (property.amenities ?? []).map((s) => s.trim()).filter(Boolean);
+    if (direct.length) return direct;
+
+    const fromHighlights = (property.highlights ?? [])
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .filter((h) => {
+        const t = h.toLowerCase();
+        return (
+          t.includes("pool") ||
+          t.includes("gym") ||
+          t.includes("club") ||
+          t.includes("garden") ||
+          t.includes("park") ||
+          t.includes("jog") ||
+          t.includes("play") ||
+          t.includes("security") ||
+          t.includes("cctv") ||
+          t.includes("parking") ||
+          t.includes("lobby") ||
+          t.includes("lift") ||
+          t.includes("amenities")
+        );
+      });
+    if (fromHighlights.length) return fromHighlights.slice(0, 9);
+
+    const type = `${property.propertyType ?? ""} ${property.projectType ?? ""}`.toLowerCase();
+    const base =
+      type.includes("commercial") || type.includes("office") || type.includes("retail")
+        ? [
+            "High-street / office-grade frontage (as applicable)",
+            "Modern common-area finishes and circulation planning",
+            "Power backup for common areas (typical)",
+            "Security & access-controlled entry (typical)",
+            "Visitor parking provisions (subject to project)",
+          ]
+        : [
+            "Club / lifestyle amenities (as per project brochure)",
+            "Fitness & wellness zones (as per project)",
+            "Landscaped open spaces (as per project)",
+            "Children’s play area (as per project)",
+            "Security & access control (as per project)",
+            "Power backup for common areas (as per project)",
+          ];
+
+    return [
+      ...base,
+      "Exact amenity list, specifications, and handover scope are shared in the official brochure / RERA documents.",
+    ];
+  }, [property]);
+
+  const locationAdvantageItems = useMemo(() => {
+    if (!property) return [];
+    const direct = (property.locationAdvantages ?? []).map((s) => s.trim()).filter(Boolean);
+    if (direct.length) return direct;
+
+    const city = (property.city ?? "").trim() || "Navi Mumbai";
+    const micro = (property.microLocation ?? "").trim();
+    const loc = (property.location ?? "").trim();
+
+    const lines: string[] = [];
+    if (micro) lines.push(`Prime micro-market positioning around ${micro}.`);
+    if (loc) lines.push(`Located at: ${loc}.`);
+    lines.push(`Well-connected within ${city} with access to key business and residential corridors.`);
+    lines.push("Proximity to schools, hospitals, retail, and everyday conveniences (varies by exact pin).");
+    lines.push("Suited for commuters with improving road and public-transport connectivity across Navi Mumbai.");
+    lines.push("For exact distances and drive-times, request a location map from our team.");
+
+    // De-dupe while keeping order
+    const seen = new Set<string>();
+    return lines.filter((l) => {
+      const k = l.toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+  }, [property]);
 
   const propertyKeywords = property
     ? Array.from(
@@ -265,7 +362,7 @@ const PropertyDetail = () => {
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Amenities</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {(property.amenities ?? []).map((a) => (
+                  {amenitiesItems.map((a) => (
                     <div key={a} className="flex items-center gap-2 bg-secondary p-3 rounded-md">
                       <CheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                       <span className="text-secondary-foreground text-sm">{a}</span>
@@ -277,7 +374,7 @@ const PropertyDetail = () => {
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Location Advantages</h2>
                 <div className="space-y-2">
-                  {(property.locationAdvantages ?? []).map((l) => (
+                  {locationAdvantageItems.map((l) => (
                     <div key={l} className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-gold flex-shrink-0" />
                       <span className="text-card-foreground text-sm">{l}</span>

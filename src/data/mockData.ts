@@ -73,7 +73,7 @@ export const properties = [
     {
         "id":  "2",
         "slug":  "elysium-platinum",
-        "title":  "Elysium Platinum",
+        "title":  "Platinum Elysium ",
         "location":  "Nerul, Navi Mumbai",
         "city":  "Navi Mumbai",
         "price":  "Price on Request",
@@ -338,70 +338,70 @@ export const properties = [
                           ],
         "mapLink":  "https://sunitarealestate.com/dream-ikon-2/"
     },
-    {
-        "id":  "5",
-        "slug":  "oakwoods-platinum",
-        "title":  "Oakwoods Platinum",
-        "location":  "Nerul, Navi Mumbai",
-        "city":  "Navi Mumbai",
-        "price":  "Price on Request",
-        "startingPrice":  "Price on Request",
-        "configuration":  "Premium Residences",
-        "builder":  "Platinum Group",
-        "propertyType":  "Residential",
-        "carpetArea":  "As per project plan",
-        "totalFloors":  0,
-        "unitsAvailable":  0,
-        "possessionDate":  "Under Construction",
-        "image":  "https://theplatinumgroup.co.in/assets/img/ongoing/07.jpg",
-        "gallery":  [
-                        "/Oakwoods%20Platinum/hero.png",
-                        "/Oakwoods%20Platinum/card.png",
-                        "/Oakwoods%20Platinum/gallery-lobby.png",
-                        "/Oakwoods%20Platinum/gallery-games.png",
-                        "/Oakwoods%20Platinum/gallery-multipurpose-hall.png",
-                        "/Oakwoods%20Platinum/gallery-gym.png"
-                    ],
-        "amenityImages":  [
-                              "/Oakwoods%20Platinum/gallery-lobby.png",
-                              "/Oakwoods%20Platinum/gallery-games.png",
-                              "/Oakwoods%20Platinum/gallery-multipurpose-hall.png",
-                              "/Oakwoods%20Platinum/gallery-gym.png"
-                          ],
-        "metaDescription":  "Platinum Oakwoods Nerul — G+16 ultra-luxurious 2, 3 & 4 BHK, CIDCO tender plot, rooftop & podium amenities. Sunita Real Estate Navi Mumbai.",
-        "overview":  "A Universe Of Luxury And Inspiration. Thoughtfully Designed To Captivate And Inspire. A Statement Of Refined Living, Meticulously Crafted. Sophistication isn\u0027t built overnight\u2014it\u0027s crafted with intent. Platinum Oakwoods is a statement of refined living, where impeccable design meets modern luxury. Every residence is meticulously planned to offer expansive spaces, premium finishes, and an effortless sense of grandeur. With world-class amenities and a prime location, it\u0027s a home that doesn\u0027t just meet expectations \u2013 it surpasses them.",
-        "highlights":  [
-                           "Grandiose G+16 Storeyed Tower",
-                           "Multi-Level Amenities At The Podium & Rooftop Level",
-                           "Grandeur Entrance Lobby",
-                           "High Speed Elevators",
-                           "Sound Reduction Windows",
-                           "CIDCO Tender Plot",
-                           "Centrally Located For Quality And Ease Of Living",
-                           "Ultra-luxurious 2,3 & 4 Bed Residences",
-                           "Large Viewing Decks",
-                           "Rooftop And Podium Floor Amenities"
-                       ],
-        "locationAdvantages":  [
-                                   "Embrace Unrivaled Connectivity At Nerul\u0027s Premier Location",
-                                   "Prime Platinum Oakwoods address in Nerul, Navi Mumbai",
-                                   "Strong connectivity to Palm Beach Road and Sion\u2013Panvel Highway"
-                               ],
-        "investmentPotential":  "Ready to transform your outdoor space? Contact us today to schedule a consultation or to learn more about our services.",
-        "amenities":  [
-                          "Exquisite Swimming Pool",
-                          "High-End Gymnasium",
-                          "Elegant Multipurpose Hall",
-                          "Ultimate Clubhouse for Indoor Games",
-                          "Exciting Kids Play Area",
-                          "Majestic Stepped Seating with Trellis",
-                          "Toddlers\u0027 Fun Play Area",
-                          "Enchanting Party Lawn",
-                          "Tranquil Senior Citizen Corner",
-                          "Stellar Star Gazing Deck"
-                      ],
-        "mapLink":  "https://sunitarealestate.com/platinum-oakwoods-nerul/"
-    },
+    // {
+    //     "id":  "5",
+    //     "slug":  "oakwoods-platinum",
+    //     "title":  " Platinum Oakwoods",
+    //     "location":  "Nerul, Navi Mumbai",
+    //     "city":  "Navi Mumbai",
+    //     "price":  "Price on Request",
+    //     "startingPrice":  "Price on Request",
+    //     "configuration":  "Premium Residences",
+    //     "builder":  "Platinum Group",
+    //     "propertyType":  "Residential",
+    //     "carpetArea":  "As per project plan",
+    //     "totalFloors":  0,
+    //     "unitsAvailable":  0,
+    //     "possessionDate":  "Under Construction",
+    //     "image":  "https://theplatinumgroup.co.in/assets/img/ongoing/07.jpg",
+    //     "gallery":  [
+    //                     "/Oakwoods%20Platinum/hero.png",
+    //                     "/Oakwoods%20Platinum/card.png",
+    //                     "/Oakwoods%20Platinum/gallery-lobby.png",
+    //                     "/Oakwoods%20Platinum/gallery-games.png",
+    //                     "/Oakwoods%20Platinum/gallery-multipurpose-hall.png",
+    //                     "/Oakwoods%20Platinum/gallery-gym.png"
+    //                 ],
+    //     "amenityImages":  [
+    //                           "/Oakwoods%20Platinum/gallery-lobby.png",
+    //                           "/Oakwoods%20Platinum/gallery-games.png",
+    //                           "/Oakwoods%20Platinum/gallery-multipurpose-hall.png",
+    //                           "/Oakwoods%20Platinum/gallery-gym.png"
+    //                       ],
+    //     "metaDescription":  "Platinum Oakwoods Nerul — G+16 ultra-luxurious 2, 3 & 4 BHK, CIDCO tender plot, rooftop & podium amenities. Sunita Real Estate Navi Mumbai.",
+    //     "overview":  "A Universe Of Luxury And Inspiration. Thoughtfully Designed To Captivate And Inspire. A Statement Of Refined Living, Meticulously Crafted. Sophistication isn\u0027t built overnight\u2014it\u0027s crafted with intent. Platinum Oakwoods is a statement of refined living, where impeccable design meets modern luxury. Every residence is meticulously planned to offer expansive spaces, premium finishes, and an effortless sense of grandeur. With world-class amenities and a prime location, it\u0027s a home that doesn\u0027t just meet expectations \u2013 it surpasses them.",
+    //     "highlights":  [
+    //                        "Grandiose G+16 Storeyed Tower",
+    //                        "Multi-Level Amenities At The Podium & Rooftop Level",
+    //                        "Grandeur Entrance Lobby",
+    //                        "High Speed Elevators",
+    //                        "Sound Reduction Windows",
+    //                        "CIDCO Tender Plot",
+    //                        "Centrally Located For Quality And Ease Of Living",
+    //                        "Ultra-luxurious 2,3 & 4 Bed Residences",
+    //                        "Large Viewing Decks",
+    //                        "Rooftop And Podium Floor Amenities"
+    //                    ],
+    //     "locationAdvantages":  [
+    //                                "Embrace Unrivaled Connectivity At Nerul\u0027s Premier Location",
+    //                                "Prime Platinum Oakwoods address in Nerul, Navi Mumbai",
+    //                                "Strong connectivity to Palm Beach Road and Sion\u2013Panvel Highway"
+    //                            ],
+    //     "investmentPotential":  "Ready to transform your outdoor space? Contact us today to schedule a consultation or to learn more about our services.",
+    //     "amenities":  [
+    //                       "Exquisite Swimming Pool",
+    //                       "High-End Gymnasium",
+    //                       "Elegant Multipurpose Hall",
+    //                       "Ultimate Clubhouse for Indoor Games",
+    //                       "Exciting Kids Play Area",
+    //                       "Majestic Stepped Seating with Trellis",
+    //                       "Toddlers\u0027 Fun Play Area",
+    //                       "Enchanting Party Lawn",
+    //                       "Tranquil Senior Citizen Corner",
+    //                       "Stellar Star Gazing Deck"
+    //                   ],
+    //     "mapLink":  "https://sunitarealestate.com/platinum-oakwoods-nerul/"
+    // },
     {
         "id":  "6",
         "slug":  "platinum-juinagar-midc",
@@ -414,8 +414,8 @@ export const properties = [
         "builder":  "Platinum Group",
         "propertyType":  "Residential",
         "carpetArea":  "As per project plan",
-        "totalFloors":  0,
-        "unitsAvailable":  0,
+        "totalFloors":  "G+17",
+        "unitsAvailable":  "41",
         "possessionDate":  "Pre-launch",
         "image":  "https://sunitarealestate.com/wp-content/uploads/2025/06/Cam-2-Semi-Aerial-1-2-scaled.jpg",
         "gallery":  [
@@ -639,7 +639,7 @@ export const properties = [
     {
         "id":  "10",
         "slug":  "mensionz-platinum",
-        "title":  "Mensionz Platinum",
+        "title":  "Platinum Mensionz",
         "location":  "Seawoods, Navi Mumbai",
         "city":  "Navi Mumbai",
         "price":  "Price on Request",
@@ -884,7 +884,7 @@ export const properties = [
     {
         "id":  "14",
         "slug":  "westwoods-platinum",
-        "title":  "Westwoods Platinum",
+        "title":  "Platinum Westwoods",
         "location":  "Seawoods, Navi Mumbai",
         "city":  "Navi Mumbai",
         "price":  "Price on Request",
@@ -1005,7 +1005,7 @@ export const properties = [
     {
         "id":  "16",
         "slug":  "esquire-platinum",
-        "title":  "Esquire Platinum",
+        "title":  "Platinum Esquire",
         "location":  "Nerul, Navi Mumbai",
         "city":  "Navi Mumbai",
         "price":  "Price on Request",
@@ -1807,7 +1807,7 @@ export const properties = [
   city: "Navi Mumbai",
   state: "Maharashtra",
   projectType: "Commercial",
-  status: "Under Construction",
+  status: "New Launch",
 
   configurations: ["Office Spaces", "Retail Shops"],
   carpetAreaRange: "430 - 820 sq.ft",
@@ -2049,39 +2049,45 @@ export const properties = [
 },
 
 {
-  title: "Platinum Oakwoods",
-  slug: "platinum-oakwoods",
-  developer: "Platinum Group",
-  location: "Sector 30 Nerul, Navi Mumbai",
-  city: "Navi Mumbai",
-  state: "Maharashtra",
-  projectType: "Residential",
-  status: "Under Construction",
-
-  configurations: ["2 BHK", "3 BHK"],
-  carpetAreaRange: "850 - 2183 sq.ft",
-
-  priceRange: "Rs. 2.35 Cr - 7.26 Cr",
-  pricingNote: "Pricing varies based on unit type and availability.",
-
-  possessionDate: "Dec 2027",
-  reraNumber: "P51700079286",
-
-  description: "Platinum Oakwoods is a residential project in Nerul offering 2 & 3 BHK homes.",
-
-  highlights: [
-    "2 & 3 BHK homes",
-    "850 - 2183 sq.ft carpet",
-    "Possession Dec 2027"
-  ],
-
-  microLocation: "Sector 30 Nerul",
-  buyerType: "Premium buyers",
-
-  image: "/properties/platinum_oakwoods-nerul-.webp",
-  gallery: ["/properties/platinum_oakwoods-nerul-.webp"]
-},
-
+    title: "Platinum Oakwoods",
+    slug: "platinum-oakwoods",
+    developer: "Platinum Group",
+    location: "Plot No. 11, Sector 30, Nerul, Navi Mumbai",
+    city: "Navi Mumbai",
+    state: "Maharashtra",
+    projectType: "Residential",
+    status: "Under Construction",
+  
+    configurations: ["2 BHK Luxuria", "3 BHK Luxuria"],
+    carpetAreaRange: "851 - 1268 sq.ft",
+  
+    priceRange: "Starting from ₹2.50 Cr+",
+    pricingNote: "Down payment options available for limited units.",
+  
+    possessionDate: "June 2028 (RERA: Dec 2029)",
+    reraNumber: "",
+  
+    description: "Platinum Oakwoods is a premium residential project in Seawoods, offering ultra-luxurious 2 & 3 BHK residences with bespoke amenities in a prime Nerul location.",
+  
+    highlights: [
+      "G+17 Storey Premium Tower",
+      "Total 41 Exclusive Units",
+      "Each Floor with 3 Residences",
+      "Bespoke Podium & Rooftop Amenities",
+      "Prime Location in Seawoods / Nerul"
+    ],
+  
+    microLocation: "Seawoods / Nerul",
+    buyerType: "Premium buyers & luxury home seekers",
+  
+    image: "/properties/platinum-oakwoods-hero.png",
+    gallery: [
+      "/properties/platinum-oakwoods-hero.png",
+      "/properties/platinum-oakwoods-gallery-2.png",
+      "/properties/platinum-oakwoods-gallery-3.png"
+    ]
+}
+,
 {
   title: "Kamdhenu Zenith",
   slug: "kamdhenu-zenith",
