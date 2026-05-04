@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { getWhatsAppLink } from "@/utils/whatsapp";
 import Layout from "@/components/layout/Layout";
 import AnimatedPageBanner from "@/components/AnimatedPageBanner";
 import { Button } from "@/components/ui/button";
@@ -6,14 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Instagram, Facebook, Twitter, Linkedin, MessageCircle } from "lucide-react";
-import { toast } from "sonner";
 import { useSeo } from "@/lib/seo";
 
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/sunitaestate@gmail.com";
-
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   useSeo({
     title: "Contact Sunita Real Estate - Navi Mumbai Property Experts",
     description:
@@ -27,27 +22,16 @@ const Contact = () => {
     ],
   });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    setIsSubmitting(true);
-    try {
-      const res = await fetch(FORMSUBMIT_ENDPOINT, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
-      if (res.ok) {
-        toast.success("Thank you! We will contact you shortly.");
-        form.reset();
-      } else {
-        toast.error("Unable to send right now. Please try again or call +91 77383 84100.");
-      }
-    } catch {
-      toast.error("Unable to send right now. Please try again or call +91 77383 84100.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    const formData = new FormData(form);
+    const name = formData.get("name") || "";
+    const email = formData.get("email") || "";
+    const subject = formData.get("subject") || "";
+    const message = formData.get("message") || "";
+    const waMessage = `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
+    window.open(getWhatsAppLink(waMessage), "_blank");
   };
 
   return (
@@ -135,10 +119,9 @@ const Contact = () => {
               <Button
                 variant="gold"
                 type="submit"
-                disabled={isSubmitting}
                 className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg"
               >
-                {isSubmitting ? "Sending…" : "Send Message"}
+                Send Message
               </Button>
             </motion.form>
 

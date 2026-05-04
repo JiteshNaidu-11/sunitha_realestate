@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getWhatsAppLink } from "@/utils/whatsapp";
 import { IndianRupee } from "lucide-react";
 import { Property } from "@/data/types";
 import { Button } from "@/components/ui/button";
@@ -250,11 +251,20 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Button asChild variant="outline" className="w-full border-gold/40 hover:bg-secondary">
-            <Link to={`/projects/${property.slug}`}>View details</Link>
-          </Button>
-          <Button asChild variant="gold" className="w-full">
-            <a href={brochureHref}>Request Brochure</a>
+          <Link to={`/projects/${property.slug}`} className="w-full">
+            <Button variant="outline" className="w-full border-gold/40 hover:bg-secondary">
+              View details
+            </Button>
+          </Link>
+          <Button
+            variant="gold"
+            className="w-full"
+            onClick={() => {
+              const message = `Hi, I'm interested in ${property.title}. Please share details.`;
+              window.open(getWhatsAppLink(message), "_blank");
+            }}
+          >
+            Request Brochure
           </Button>
         </div>
       </div>

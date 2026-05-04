@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { openWhatsApp } from "@/utils/whatsapp";
 import { Button } from "@/components/ui/button";
 import PropertyCard from "@/components/PropertyCard";
 import TestimonialCard from "@/components/TestimonialCard";
@@ -161,11 +162,9 @@ const Index = () => {
                   View Projects <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button variant="hero-outline" size="lg" className="text-base px-8">
-                  Contact Us
-                </Button>
-              </Link>
+              <Button variant="hero-outline" size="lg" className="text-base px-8" onClick={() => openWhatsApp("Hi, I'm interested in your properties")}>
+                Contact Us
+              </Button>
             </div>
           </motion.div>
         </div>
@@ -324,11 +323,9 @@ const Index = () => {
             <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8">
               Let our experts help you find the perfect property in Navi Mumbai. Get in touch with us today.
             </p>
-            <Link to="/contact">
-              <Button variant="hero-outline" size="lg" className="text-base px-10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                Contact Us Now
-              </Button>
-            </Link>
+            <Button variant="hero-outline" size="lg" className="text-base px-10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10" onClick={() => openWhatsApp("Hi, I'm interested in your properties")}>
+              Contact Us Now
+            </Button>
           </motion.div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import { openWhatsApp } from "@/utils/whatsapp";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Target, Eye, Award, Users, Clock, Shield, ArrowRight } from "lucide-react";
@@ -77,11 +78,9 @@ const About = () => {
                   View Projects <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button variant="hero-outline" size="lg" className="text-base px-8">
-                  Contact Us
-                </Button>
-              </Link>
+              <Button variant="hero-outline" size="lg" className="text-base px-8" onClick={() => openWhatsApp("Hi, I'm interested in your properties")}>
+                Contact Us
+              </Button>
             </div>
           </motion.div>
         </div>

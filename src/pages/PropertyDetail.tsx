@@ -1,12 +1,12 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import { openWhatsApp } from "@/utils/whatsapp";
 import { properties } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { buildAbsoluteUrl, useSeo } from "@/lib/seo";
-import { toast } from "sonner";
 import PropertyUnitConfigurationSection from "@/components/PropertyUnitConfigurationSection";
 
 let propertyManifestCache: Record<string, string> | null = null;
@@ -236,18 +236,8 @@ const PropertyDetail = () => {
 
   const handleEnquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const n = name.trim();
-    const em = email.trim();
-    const ph = phone.trim();
-    if (!n || !em || !ph) {
-      toast.error("Please enter your name, email, and phone number.");
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-    toast.success("Thank you — we'll contact you shortly. You can also call +91 77383 84100.");
+    const waMessage = `Hi, I'm interested in property consultation.\n\nName: ${name.trim()}\nEmail: ${email.trim()}\nPhone: ${phone.trim()}${message.trim() ? `\nMessage: ${message.trim()}` : ""}\n\nPage: Property Detail\nProject: ${property?.title ?? ""}`;
+    openWhatsApp(waMessage);
     setName("");
     setEmail("");
     setPhone("");
