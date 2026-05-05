@@ -15,18 +15,24 @@ import type { Property } from "@/data/types";
 
 /** Homepage featured grid order (must match slugs in `mockData`). */
 const FEATURED_PROJECT_SLUGS = [
+  "elysium-platinum",
+  "platinum-esquire",
+  "platinum-mansioz",
+  // "platinum-oakwoods",
+  "platinum-parksyde",
+  // "platinum-sicily",
+
   "aatman-balaji-palm-beach",
   "cadbury-junction-thane-west",
-  "codename-panoramic-cbd-belapur",
-  "mayuresh-planet-cbd-belapur",
-  "9pbr-adani-realty",
-  "elysium-platinum",
+  // "codename-panoramic-cbd-belapur",
+  // "mayuresh-planet-cbd-belapur",
+  // "9pbr-adani-realty",
 ] as const;
 
 function getFeaturedProperties(all: Property[]): Property[] {
-  return FEATURED_PROJECT_SLUGS.map((slug) => all.find((p) => p.slug === slug)).filter(
-    (p): p is Property => p != null
-  );
+  return all
+    .filter((p) => p.builder?.toLowerCase().includes("platinum"))
+    .slice(0, 5);
 }
 
 const iconMap: Record<string, React.ReactNode> = {

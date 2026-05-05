@@ -4,7 +4,7 @@ import { openWhatsApp } from "@/utils/whatsapp";
 import { properties } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft } from "lucide-react";
+import { MapPin, IndianRupee, Building, Layers, Home, CheckCircle, ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { buildAbsoluteUrl, useSeo } from "@/lib/seo";
 import PropertyUnitConfigurationSection from "@/components/PropertyUnitConfigurationSection";
@@ -65,6 +65,8 @@ const PropertyDetail = () => {
 
   const [heroSrc, setHeroSrc] = useState<string>("");
   const [cacheBust, setCacheBust] = useState<number>(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [resolvedSrcs, setResolvedSrcs] = useState<string[]>([]);
 
   useEffect(() => {
     if (!property) return;
@@ -83,6 +85,33 @@ const PropertyDetail = () => {
       }
     });
   }, [property]);
+
+  const galleryImages = useMemo(() => {
+    if (!property) return [];
+    return (property.gallery?.length ? property.gallery : [heroSrc]).map((img) => {
+      const candidate = typeof img === "string" ? img.trim() : "";
+      const isLocal = candidate.startsWith("/");
+      const isExternal = candidate.startsWith("http");
+      if (isLocal) return `${candidate}?v=${cacheBust}`;
+      if (isExternal) return candidate;
+      return heroSrc || getPropertyFallbackImage();
+    });
+  }, [property, heroSrc, cacheBust]);
+
+  useEffect(() => {
+    setResolvedSrcs([...galleryImages]);
+  }, [galleryImages]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "ArrowRight") setLightboxIndex((i) => (i === null ? null : (i + 1) % galleryImages.length));
+      if (e.key === "ArrowLeft") setLightboxIndex((i) => (i === null ? null : (i - 1 + galleryImages.length) % galleryImages.length));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIndex, galleryImages.length]);
 
   const seoImage = useMemo(() => {
     if (!property) return "";
@@ -263,7 +292,7 @@ const PropertyDetail = () => {
 
   return (
     <Layout>
-      <section className="relative pt-24 pb-0">
+      <section className="relative pt-20 pb-0">
         <div className="h-[50vh] relative">
           <img
             src={heroSrc || seoImage || property.image}
@@ -376,24 +405,30 @@ const PropertyDetail = () => {
               <div className="bg-card p-6 rounded-lg shadow-md">
                 <h2 className="font-display text-2xl font-bold text-card-foreground mb-4">Gallery</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {(property.gallery?.length ? property.gallery : Array.from({ length: 6 }, () => heroSrc)).map((img, i) => {
-                    const candidate = typeof img === "string" ? img.trim() : "";
-                    const isLocal = candidate.startsWith("/");
-                    const src = isLocal ? `${candidate}?v=${cacheBust}` : heroSrc || seoImage || getPropertyFallbackImage();
-                    return (
+                  {galleryImages.map((src, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setLightboxIndex(i)}
+                      className="rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-gold cursor-zoom-in"
+                    >
                       <img
-                        key={i}
-                        src={src}
+                        src={resolvedSrcs[i] ?? src}
                         alt={`${property.title} ${property.location} image ${i + 1}`}
-                        className="rounded-lg w-full h-48 object-cover bg-muted"
+                        className="w-full h-48 object-cover bg-muted hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                         onError={(e) => {
                           e.currentTarget.onerror = null;
-                          e.currentTarget.src = heroSrc || seoImage || getPropertyFallbackImage();
+                          const fallback = heroSrc || seoImage || getPropertyFallbackImage();
+                          e.currentTarget.src = fallback;
+                          setResolvedSrcs((prev) => {
+                            const next = [...prev];
+                            next[i] = fallback;
+                            return next;
+                          });
                         }}
                       />
-                    );
-                  })}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
@@ -456,6 +491,45 @@ const PropertyDetail = () => {
           </div>
         </div>
       </section>
+
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/80 hover:text-white"
+            onClick={() => setLightboxIndex(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <button
+            className="absolute left-4 text-white/80 hover:text-white"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length); }}
+          >
+            <ChevronLeft className="w-10 h-10" />
+          </button>
+
+          <img
+            src={resolvedSrcs[lightboxIndex] ?? galleryImages[lightboxIndex]}
+            alt={`${property.title} image ${lightboxIndex + 1}`}
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <button
+            className="absolute right-4 text-white/80 hover:text-white"
+            onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % galleryImages.length); }}
+          >
+            <ChevronRight className="w-10 h-10" />
+          </button>
+
+          <span className="absolute bottom-4 text-white/60 text-sm">
+            {lightboxIndex + 1} / {galleryImages.length}
+          </span>
+        </div>
+      )}
     </Layout>
   );
 };
