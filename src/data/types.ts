@@ -79,6 +79,8 @@ export interface Property {
   mapLink?: string;
   /** Google Maps iframe embed URL (e.g. .../maps?q=lat,lng&output=embed) */
   mapEmbedUrl?: string;
+  /** External project/developer website — shown as "Official Project Website" button when present. */
+  projectWebsite?: string;
   /** Optional banner above footer area */
   ctaTitle?: string;
   ctaDescription?: string;

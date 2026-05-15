@@ -267,6 +267,18 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
             Request Brochure
           </Button>
         </div>
+        {property.projectWebsite ? (
+          <a
+            href={property.projectWebsite as string}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full"
+          >
+            <Button variant="outline" className="w-full border-gold/40 hover:bg-secondary">
+              Official Project Website
+            </Button>
+          </a>
+        ) : null}
       </div>
     </motion.div>
   );

@@ -4,7 +4,8 @@ import { openWhatsApp } from "@/utils/whatsapp";
 import { Button } from "@/components/ui/button";
 import PropertyCard from "@/components/PropertyCard";
 import TestimonialCard from "@/components/TestimonialCard";
-import { properties, testimonials, services } from "@/data/mockData";
+import { testimonials, services } from "@/data/mockData";
+import { uniqueProperties } from "@/data/properties";
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, Building, TrendingUp, FileText, ArrowRight, CheckCircle } from "lucide-react";
 // import heroBg from "@/assets/hero-bg.jpg";
@@ -32,7 +33,7 @@ const FEATURED_PROJECT_SLUGS = [
 function getFeaturedProperties(all: Property[]): Property[] {
   return all
     .filter((p) => p.builder?.toLowerCase().includes("platinum"))
-    .slice(0, 5);
+    .slice(0, 6);
 }
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -192,7 +193,7 @@ const Index = () => {
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {getFeaturedProperties(properties).map((property, index) => (
+            {getFeaturedProperties(uniqueProperties).map((property, index) => (
               <PropertyCard key={property.id} property={property} index={index} />
             ))}
           </div>

@@ -246,15 +246,18 @@ export const properties = [
         "totalFloors":  "G+17",
         "unitsAvailable":  "41",
         "possessionDate":  "Pre-launch",
-        "image":  "https://sunitarealestate.com/wp-content/uploads/2025/06/Cam-2-Semi-Aerial-1-2-scaled.jpg",
+        "image":  "/Platinum Juinagar/1.webp",
         "gallery":  [
-                        "https://sunitarealestate.com/wp-content/uploads/2025/11/Image-platinum.png",
-                        "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-171940.png",
-                        "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172257.png",
-                        "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172312.webp",
-                        "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172328.webp",
-                        "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172348.webp",
-                        "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-173208.png"
+                        "/Platinum Juinagar/1.webp",
+                        "/Platinum Juinagar/2.webp",
+                        "/Platinum Juinagar/3.webp",
+                        "/Platinum Juinagar/4.webp",
+                        "/Platinum Juinagar/5.webp",
+                        "/Platinum Juinagar/6.webp",
+                        "/Platinum Juinagar/7.webp",
+                        "/Platinum Juinagar/8.webp",
+                        "/Platinum Juinagar/9.webp",
+                        "/Platinum Juinagar/10.webp"
                     ],
         "metaDescription":  "Platinum Juinagar MIDC pre-launch — 5-acre estate, 2/3/4 BHK uber-luxe homes & smart IT offices, Juinagar Nerul LP. Sunita Real Estate.",
         "overview":  "Platinum Juinagar MIDC - Pre Launch. NERUL LP, NAVI MUMBAI. WHERE YOUR HORIZON EXTENDS TO INFINITY. Platinum Juinagar Midc Upcoming Project | 2 / 3 / 4 BHK. Introducing PLATINUM GROUP's most exclusive offering: A Luxurious Estate spanning 5 Acres in the Heart of Juinagar, MIDC with Unparalleled Amenities for work-life balance. UBER-LUXE 2, 3, & 4 BED RESIDENCES. NEXT-GEN SMART IT OFFICES. Don't Miss this Opportunity to be Part of the Legacy!",
@@ -293,15 +296,20 @@ export const properties = [
                           "Access Controlled Lobbies"
                       ],
         "amenityImages":  [
-                              "https://sunitarealestate.com/wp-content/uploads/2025/11/Image-platinum.png",
-                              "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-171940.png",
-                              "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172257.png",
-                              "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172312.webp",
-                              "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172328.webp",
-                              "https://sunitarealestate.com/wp-content/uploads/2025/07/Screenshot-2025-07-01-172348.webp"
+                              "/Platinum Juinagar/1.webp",
+                              "/Platinum Juinagar/2.webp",
+                              "/Platinum Juinagar/3.webp",
+                              "/Platinum Juinagar/4.webp",
+                              "/Platinum Juinagar/5.webp",
+                              "/Platinum Juinagar/6.webp",
+                              "/Platinum Juinagar/7.webp",
+                              "/Platinum Juinagar/8.webp",
+                              "/Platinum Juinagar/9.webp",
+                              "/Platinum Juinagar/10.webp"
                           ],
         "mapLink":  "https://www.google.com/maps/search/?api=1&query=Platinum+Juinagar+MIDC+Navi+Mumbai",
-        "mapEmbedUrl":  "https://www.google.com/maps?q=Platinum%20Juinagar%20MIDC%20Navi%20Mumbai&z=15&output=embed"
+        "mapEmbedUrl":  "https://www.google.com/maps?q=Platinum%20Juinagar%20MIDC%20Navi%20Mumbai&z=15&output=embed",
+        "projectWebsite":  "https://platinumjuinagarlaunch.com"
     },
     {
         "id":  "5",
@@ -569,20 +577,18 @@ export const properties = [
         "totalFloors":  0,
         "unitsAvailable":  0,
         "possessionDate":  "Pre-launch",
-        "image":  "https://sunitarealestate.com/wp-content/uploads/2026/01/platinumjuinagarlaunch.jpg",
+        "image":  "/Platinum Juinagar/1.webp",
         "gallery":  [
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321586-platinum-juinagar-new-launch-g6-1-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g1-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g5-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321586-platinum-juinagar-new-launch-g2-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g1-1-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g4-2-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321586-platinum-juinagar-new-launch-g6-1024x683.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/blue7-1024x701.png",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/blue19-1024x576.jpg",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1764149300-codename-green-gold-nerul-g1-1024x588.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1764149300-codename-green-gold-nerul-g4-1024x588.webp",
-                        "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1764149301-codename-green-gold-nerul-g5-1024x588.webp"
+                        "/Platinum Juinagar/1.webp",
+                        "/Platinum Juinagar/2.webp",
+                        "/Platinum Juinagar/3.webp",
+                        "/Platinum Juinagar/4.webp",
+                        "/Platinum Juinagar/5.webp",
+                        "/Platinum Juinagar/6.webp",
+                        "/Platinum Juinagar/7.webp",
+                        "/Platinum Juinagar/8.webp",
+                        "/Platinum Juinagar/9.webp",
+                        "/Platinum Juinagar/10.webp"
                     ],
         "metaDescription":  "Platinum Juinagar New Launch — G+30 biophilic 2–4 BHK, Juinagar MIDC, station & highway access, investor offers. Official launch site.",
         "overview":  "PLATINUM NEW LAUNCH AT JUINAGAR MIDC. Platinum Juinagar is an iconic G+30 storey high-rise with premium 2, 3 and 4 BHK residences on a large MIDC Juinagar land parcel — biophilic design, 7-star lifestyle positioning, smart layouts and strong connectivity to Juinagar station, Sion-Panvel Highway, Nexus Seawoods, NMIA and Atal Setu.",
@@ -611,14 +617,15 @@ export const properties = [
                           "40+ lifestyle amenities — Singapore-themed podium (per site)"
                       ],
         "amenityImages":  [
-                              "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321586-platinum-juinagar-new-launch-g6-1-1024x683.webp",
-                              "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g1-1024x683.webp",
-                              "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g5-1024x683.webp",
-                              "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321586-platinum-juinagar-new-launch-g2-1024x683.webp",
-                              "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g1-1-1024x683.webp",
-                              "https://platinumjuinagarlaunch.com/wp-content/uploads/2025/12/1727321585-platinum-juinagar-new-launch-g4-2-1024x683.webp"
+                              "/Platinum Juinagar/1.webp",
+                              "/Platinum Juinagar/2.webp",
+                              "/Platinum Juinagar/3.webp",
+                              "/Platinum Juinagar/4.webp",
+                              "/Platinum Juinagar/5.webp",
+                              "/Platinum Juinagar/6.webp"
                           ],
-        "mapLink":  "https://platinumjuinagarlaunch.com/"
+        "mapLink":  "https://platinumjuinagarlaunch.com/",
+        "projectWebsite":  "https://platinumjuinagarlaunch.com"
     },
 
     // ============================================
@@ -639,14 +646,19 @@ export const properties = [
         "totalFloors":  0,
         "unitsAvailable":  0,
         "possessionDate":  "Under Construction",
-        "image":  "https://sunitarealestate.com/wp-content/uploads/2025/06/Cam-2-Semi-Aerial-1-2-scaled.jpg",
+        "image":  "/9PBR%20-%20Adani%20Realty/1.webp",
         "gallery":  [
-                        "/9PBR%20-%20Adani%20Realty/card-image.png",
-                        "/9PBR%20-%20Adani%20Realty/gallary-1.png",
-                        "/9PBR%20-%20Adani%20Realty/gallary-2.png",
-                        "/9PBR%20-%20Adani%20Realty/gallary-3.png",
-                        "/9PBR%20-%20Adani%20Realty/gallary-4.png",
-                        "/9PBR%20-%20Adani%20Realty/gallary-5.png"
+                        "/9PBR%20-%20Adani%20Realty/1.webp",
+                        "/9PBR%20-%20Adani%20Realty/2.webp",
+                        "/9PBR%20-%20Adani%20Realty/3.webp",
+                        "/9PBR%20-%20Adani%20Realty/4.webp",
+                        "/9PBR%20-%20Adani%20Realty/5.webp",
+                        "/9PBR%20-%20Adani%20Realty/6.webp",
+                        "/9PBR%20-%20Adani%20Realty/7.webp",
+                        "/9PBR%20-%20Adani%20Realty/8.webp",
+                        "/9PBR%20-%20Adani%20Realty/9.webp",
+                        "/9PBR%20-%20Adani%20Realty/10.webp",
+                        "/9PBR%20-%20Adani%20Realty/11.webp"
                     ],
         "metaDescription":  "9PBR Adani Realty on Palm Beach Road, Nerul — premium 3 BHK, Arabian Sea views, world-class amenities. Project details with Sunita Real Estate, Navi Mumbai.",
         "overview":  "LIVE INFINITELY. NERUL, NAVI MUMBAI. WHERE YOUR HORIZON EXTENDS TO INFINITY. Palm Beach Road, Nerul. Navi Mumbai, a crown jewel among the world's largest planned cities, offers an infinite canvas of modern living. Renowned as India's fourth cleanest city, it has undergone a remarkable transformation into a sought-after destination for both residential and commercial enterprises. The Palm Beach Road, an epitome of luxury, provides an endless vista of the Arabian Sea and a lifestyle of unparalleled convenience.",
@@ -685,13 +697,15 @@ export const properties = [
                           "Banquet Hall"
                       ],
         "amenityImages":  [
-                              "/9PBR%20-%20Adani%20Realty/gallary-1.png",
-                              "/9PBR%20-%20Adani%20Realty/gallary-2.png",
-                              "/9PBR%20-%20Adani%20Realty/gallary-3.png",
-                              "/9PBR%20-%20Adani%20Realty/gallary-4.png",
-                              "/9PBR%20-%20Adani%20Realty/gallary-5.png"
+                              "/9PBR%20-%20Adani%20Realty/6.webp",
+                              "/9PBR%20-%20Adani%20Realty/7.webp",
+                              "/9PBR%20-%20Adani%20Realty/8.webp",
+                              "/9PBR%20-%20Adani%20Realty/9.webp",
+                              "/9PBR%20-%20Adani%20Realty/10.webp",
+                              "/9PBR%20-%20Adani%20Realty/11.webp"
                           ],
-        "mapLink":  "https://sunitarealestate.com/9pbr-palmbeachroad/"
+        "mapLink":  "https://sunitarealestate.com/9pbr-palmbeachroad/",
+        "projectWebsite":  "https://9pbrpalmbeachroad.com"
     },
     {
         "id":  "11",
@@ -1271,7 +1285,8 @@ export const properties = [
                               "https://emperiac2turbhe.com/wp-content/uploads/2026/02/indoorsportsarea.webp",
                               "https://emperiac2turbhe.com/wp-content/uploads/2026/02/loungearea.webp"
                           ],
-        "mapLink":  "https://emperiac2turbhe.com/"
+        "mapLink":  "https://emperiac2turbhe.com/",
+        "projectWebsite":  "https://emperiac2turbhe.com"
     },
     {
         "id":  "20",
@@ -1337,7 +1352,8 @@ export const properties = [
                               "https://birlaestateairoli.in/wp-content/uploads/2026/02/birla-niyaara-worli-gym-1024x1024.webp",
                               "https://birlaestateairoli.in/wp-content/uploads/2026/02/birla-niyaara-worli-play-ground-1024x1024.webp"
                           ],
-        "mapLink":  "https://birlaestateairoli.in/"
+        "mapLink":  "https://birlaestateairoli.in/",
+        "projectWebsite":  "https://sunit.birlaestateairoli.in"
     },
     {
         "id":  "21",
@@ -1978,8 +1994,294 @@ export const properties = [
     }
 ];
 
-export const blogs: Blog[] = [
-  // ... (blogs remain unchanged)
+export const blogs = [
+  {
+    id: 1,
+    slug: "hidden-cost-of-buying-the-wrong-home",
+    title: "The Hidden Cost of Buying the Wrong Home",
+    category: "Real Estate",
+    author: "Sunita Real Estate",
+    date: "2026-05-01",
+    image: "/Platinum%20Elysium/01.jpg",
+    excerpt:
+      "Choosing the wrong property can affect your lifestyle, peace of mind and future finances.",
+
+    tags: ["Real Estate", "Investment", "Navi Mumbai"],
+
+    content: `
+        <p>Most people think buying a home is only about budget.</p>
+
+        <p>But the real cost often comes later.</p>
+
+        <p>A beautiful apartment with poor connectivity. A cheaper property with no future appreciation. A home that looks luxurious online but feels cramped in reality.</p>
+
+        <p>These are mistakes many buyers regret after purchasing.</p>
+
+        <blockquote>
+            The truth is, choosing the wrong property can affect your lifestyle, mental peace, daily routine, and future finances.
+        </blockquote>
+
+        <h2>Why Buyers Regret Their Decisions</h2>
+
+        <p>Many buyers focus only on pricing and ignore long-term livability.</p>
+
+        <p>Modern homebuyers are becoming smarter and researching beyond just cost.</p>
+
+        <ul>
+            <li>Location growth potential</li>
+            <li>Future infrastructure</li>
+            <li>Connectivity</li>
+            <li>Open spaces</li>
+            <li>Community lifestyle</li>
+        </ul>
+
+        <h2>Location Growth Matters</h2>
+
+        <p>Areas with upcoming infrastructure, business hubs, metro connectivity and social development usually deliver better long-term returns.</p>
+
+        <p>This is why property investment in Navi Mumbai is becoming increasingly attractive for both families and investors.</p>
+
+        <p>Projects like Platinum Elysium combine strategic location with lifestyle-driven living.</p>
+
+        <h2>Smart Homes Are About Daily Living</h2>
+
+        <p>Smart layouts, ventilation, natural light and usable spaces are more important than fancy interiors.</p>
+
+        <p>Luxury today means comfort, peace and convenience.</p>
+
+        <p>Modern developments now focus heavily on landscaped gardens, clubhouses, fitness centres, jogging tracks and children's play areas.</p>
+
+        <h2>Think Long-Term</h2>
+
+        <p>Before making a decision, ask yourself:</p>
+
+        <ul>
+            <li>Will this property grow in value?</li>
+            <li>Does this location improve my lifestyle?</li>
+            <li>Can I imagine my future here?</li>
+        </ul>
+
+        <p>The right home is not an expense.</p>
+
+        <p>It’s a long-term investment in your happiness and future.</p>
+        `,
+  },
+
+  {
+    id: 2,
+    slug: "why-luxury-amenities-are-no-longer-a-luxury",
+    title: "Why Luxury Amenities Are No Longer a Luxury",
+    category: "Luxury Living",
+    author: "Sunita Real Estate",
+    date: "2026-05-02",
+    image: "/Platinum%20The%20Reserve/01.jpg",
+    excerpt:
+      "Modern homebuyers want comfort, wellness and convenience beyond the apartment itself.",
+
+    tags: ["Luxury", "Amenities", "Lifestyle"],
+
+    content: `
+        <p>There was a time when amenities were considered extra.</p>
+
+        <p>Today, they’ve become essential.</p>
+
+        <blockquote>
+        Modern homebuyers want homes that help them relax, recharge and live better.
+        </blockquote>
+
+        <h2>Luxury Has Evolved</h2>
+
+        <p>People no longer want to travel far for fitness, recreation or family time.</p>
+
+        <p>They want everything within their residential community.</p>
+
+        <ul>
+        <li>Swimming pools</li>
+        <li>Gardens</li>
+        <li>Jogging tracks</li>
+        <li>Clubhouses</li>
+        <li>Kids play zones</li>
+        <li>Fitness centres</li>
+        </ul>
+
+        <h2>More Than Just Features</h2>
+
+        <p>Projects like Platinum The Reserve are designed around modern lifestyle expectations.</p>
+
+        <p>These amenities improve wellness, convenience and social living.</p>
+
+        <h2>Why Amenities Matter Emotionally</h2>
+
+        <p>A landscaped garden creates peace after stressful days.</p>
+
+        <p>A clubhouse helps families socialize.</p>
+
+        <p>A children’s play area creates happier memories.</p>
+
+        <h2>The Future Of Residential Living</h2>
+
+        <p>Today a home is no longer just a place to sleep.</p>
+
+        <p>It is the foundation of your lifestyle.</p>
+        `
+  },
+
+  {
+    id: 3,
+    slug: "rent-or-buy-young-professionals",
+    title: "Rent or Buy? The Question Every Young Professional is Asking",
+    category: "Investment",
+    author: "Sunita Real Estate",
+    date: "2026-05-03",
+    image: "/Platinum%20Westwoods/01.jpg",
+    excerpt:
+      "Young professionals are reconsidering long-term ownership and stability.",
+
+    tags: ["Investment", "Home Buying", "EMI"],
+
+    content: `
+        <p>“Should I keep paying rent or finally buy a home?”</p>
+
+        <p>This question is dominating conversations among young professionals across Mumbai and Navi Mumbai.</p>
+
+        <h2>The Problem With Renting Forever</h2>
+
+        <p>At first, renting feels flexible and convenient.</p>
+
+        <p>But over time, monthly rent payments start feeling like money disappearing with no ownership.</p>
+
+        <blockquote>
+        Buying a home creates stability, ownership and long-term financial value.
+        </blockquote>
+
+        <h2>Why Young Buyers Are Investing</h2>
+
+        <p>Real estate in Navi Mumbai is becoming one of the strongest investment opportunities for young buyers.</p>
+
+        <p>Upcoming infrastructure and commercial growth are driving future appreciation.</p>
+
+        <h2>Emotional Security Matters</h2>
+
+        <p>Owning a home gives emotional comfort that renting can never fully provide.</p>
+
+        <p>A place where you can build memories, create stability and design your future.</p>
+
+        <h2>The Smarter Financial Move</h2>
+
+        <p>Many buyers now prefer paying EMI for ownership instead of monthly rent with no future returns.</p>
+
+        <p>The key is finding the right project, location and developer.</p>
+        `
+  },
+
+  {
+    id: 4,
+    slug: "smart-investors-choosing-navi-mumbai",
+    title: "Why Smart Investors Are Looking Beyond Mumbai and Choosing Navi Mumbai",
+    category: "Investment",
+    author: "Sunita Real Estate",
+    date: "2026-05-04",
+    image: "/Platinum%20Oakwoods/01.jpg",
+    excerpt:
+      "Navi Mumbai is emerging as one of the strongest investment destinations.",
+
+    tags: ["Navi Mumbai", "Investment", "Growth"],
+
+    content: `
+        <p>For years, Mumbai was considered the ultimate destination for property investment.</p>
+
+        <p>But smart investors are now shifting towards Navi Mumbai.</p>
+
+        <h2>Why Navi Mumbai Is Growing Fast</h2>
+
+        <p>Overcrowding, traffic and limited expansion in saturated markets are pushing buyers toward emerging urban hubs.</p>
+
+        <p>Navi Mumbai offers planned infrastructure and future-ready development.</p>
+
+        <blockquote>
+        The future of growth is moving towards Navi Mumbai real estate investment.
+        </blockquote>
+
+        <h2>What Investors Want Today</h2>
+
+        <ul>
+        <li>Better connectivity</li>
+        <li>Less congestion</li>
+        <li>Larger homes</li>
+        <li>Modern amenities</li>
+        <li>Future appreciation</li>
+        </ul>
+
+        <h2>Strategic Growth Corridors</h2>
+
+        <p>Projects like Platinum Juinagar MIDC are gaining attention because of strong connectivity and growth potential.</p>
+
+        <p>Upcoming infrastructure projects are expected to increase demand significantly.</p>
+
+        <h2>The Best Investments Happen Early</h2>
+
+        <p>The smartest investments are usually made before the market peak.</p>
+
+        <p>Navi Mumbai continues to emerge as one of the strongest long-term opportunities.</p>
+        `
+  },
+
+  {
+    id: 5,
+    slug: "why-location-changes-lifestyle",
+    title: "Why Your Home’s Location Can Change Your Entire Lifestyle",
+    category: "Lifestyle",
+    author: "Sunita Real Estate",
+    date: "2026-05-05",
+    image: "/Platinum%20Mansionz/01.jpg",
+    excerpt:
+      "Location directly affects lifestyle, convenience and future value.",
+
+    tags: ["Location", "Lifestyle", "Connectivity"],
+
+    content: `
+        <p>Most people underestimate how much location affects daily life.</p>
+
+        <p>Until they experience the wrong one.</p>
+
+        <h2>Location Impacts Everyday Life</h2>
+
+        <p>Long commutes, traffic stress and poor connectivity slowly reduce quality of life.</p>
+
+        <p>This is why experienced buyers prioritize location before anything else.</p>
+
+        <blockquote>
+        The goal is simple — save time and improve lifestyle.
+        </blockquote>
+
+        <h2>What Modern Buyers Look For</h2>
+
+        <ul>
+        <li>Business hubs</li>
+        <li>Schools</li>
+        <li>Hospitals</li>
+        <li>Metro connectivity</li>
+        <li>Railway stations</li>
+        <li>Entertainment zones</li>
+        </ul>
+
+        <h2>Convenience Changes Lifestyle</h2>
+
+        <p>Imagine spending less time in traffic and more time with family.</p>
+
+        <p>Imagine stress-free mornings instead of rushed commutes.</p>
+
+        <p>That convenience changes everyday life.</p>
+
+        <h2>Location Also Impacts Appreciation</h2>
+
+        <p>As infrastructure grows and commerce expands, appreciation and demand become stronger over time.</p>
+
+        <p>The right location is more than a time saver.</p>
+
+        <p>It changes the way you live every single day.</p>
+        `
+  },
 ];
 
 export const testimonials: Testimonial[] = [

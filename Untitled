@@ -1,3 +1,0 @@
-Move-Item * ..
-cd ..
-Remove-Item -Recurse -Force sunitha_realestate-main

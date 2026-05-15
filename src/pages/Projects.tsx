@@ -1,7 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import AnimatedPageBanner from "@/components/AnimatedPageBanner";
 import PropertyCard from "@/components/PropertyCard";
-import { properties } from "@/data/mockData";
+import { uniqueProperties } from "@/data/properties";
 import { motion } from "framer-motion";
 
 const Projects = () => {
@@ -21,7 +21,7 @@ const Projects = () => {
       <section className="py-20 bg-cream">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {properties.map((property, index) => (
+            {uniqueProperties.map((property, index) => (
               <PropertyCard key={property.slug} property={property} index={index} />
             ))}
           </div>

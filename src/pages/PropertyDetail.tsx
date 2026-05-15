@@ -486,6 +486,18 @@ const PropertyDetail = () => {
                     Units Available: {property.unitsAvailable > 0 ? property.unitsAvailable : "Check with our team"}
                   </p>
                 </div>
+                {property.projectWebsite ? (
+                  <a
+                    href={property.projectWebsite as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full mt-4"
+                  >
+                    <Button variant="outline" className="w-full border-gold/40 hover:bg-secondary">
+                      Official Project Website
+                    </Button>
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>
